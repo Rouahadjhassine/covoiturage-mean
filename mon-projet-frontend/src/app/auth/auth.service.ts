@@ -1,19 +1,26 @@
-// app/auth/auth.service.ts
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+interface LoginResponse {
+  token: string;
+  user: { email: string };
+  message: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
-  private apiUrl = 'http://localhost:5000/api/auth'; // adapte l'URL à ton backend
+  private apiUrl = 'http://localhost:5000/api/auth';
 
   constructor(private http: HttpClient) {}
 
-  register(user: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, user);
+  login(email: string, password: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password });
   }
 
-  login(credentials: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, credentials);
+  register(email: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, { email, password });
   }
 }

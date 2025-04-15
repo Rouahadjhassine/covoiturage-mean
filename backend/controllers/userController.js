@@ -1,21 +1,23 @@
 const User = require('../models/userModel');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const createUser = async (req, res) => {
+require('dotenv').config();
+
+// Créer un utilisateur (inscription)
+exports.createUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Vérifier si l'utilisateur existe déjà
+    // Vérifie si l'utilisateur existe déjà
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: 'Utilisateur déjà existant' });
+      return res.status(409).json({ message: 'Utilisateur déjà existant' });
     }
 
-    // Hasher le mot de passe
+    // Hash du mot de passe
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Créer un nouvel utilisateur
     const newUser = new User({
       email,
       password: hashedPassword,
@@ -25,38 +27,38 @@ const createUser = async (req, res) => {
 
     res.status(201).json({ message: 'Utilisateur créé avec succès' });
   } catch (error) {
-    res.status(500).json({ message: 'Erreur serveur', error });
+    res.status(500).json({ message: 'Erreur serveur', error: error.message });
   }
 };
 
-const loginUser = async (req, res) => {
+// Connexion utilisateur
+exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Vérifier que l'utilisateur existe
+    // Vérifie si l'utilisateur existe
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: 'Utilisateur non trouvé' });
+      return res.status(404).json({ message: 'Utilisateur non trouvé' });
     }
 
-    // Vérifier le mot de passe
+    // Vérifie le mot de passe
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({ message: 'Mot de passe incorrect' });
     }
 
-    // Générer un token
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: '1d',
+    // Génère un token JWT
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      expiresIn: '1h',
     });
 
-    res.status(200).json({ message: 'Connexion réussie', token });
+    res.status(200).json({
+      message: 'Connexion réussie',
+      token,
+      user: { email: user.email },
+    });
   } catch (error) {
-    res.status(500).json({ message: 'Erreur serveur', error });
+    res.status(500).json({ message: 'Erreur serveur', error: error.message });
   }
-};
-
-module.exports = {
-  createUser,
-  loginUser,
 };

@@ -1,0 +1,83 @@
+/* Centrage de la boîte */
+.login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f1f2f6;
+  }
+  
+  /* Boîte du formulaire */
+  .login-box {
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .login-box h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #2f3542;
+  }
+  
+  /* Champs de formulaire */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #57606f;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ced6e0;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s;
+  }
+  
+  .form-group input:focus {
+    border-color: #3742fa;
+  }
+  
+  /* Bouton */
+  button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #3742fa;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #2f35c5;
+  }
+  
+  /* Lien d'inscription */
+  .register-text {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 14px;
+  }
+  
+  .register-text a {
+    color: #3742fa;
+    text-decoration: none;
+  }
+  
+  .register-text a:hover {
+    text-decoration: underline;
+  }
+  

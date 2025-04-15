@@ -1,23 +1,33 @@
-// register.component.ts
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';  // Importation du module FormsModule pour la gestion des formulaires
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
-  standalone: true, // Indication que ce composant est autonome
-  imports: [FormsModule],  // Importation des modules nécessaires
-  templateUrl: './register.component.html',  // Lien vers le fichier HTML
-  styleUrls: ['./register.component.css']   // Lien vers le fichier CSS (facultatif)
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './register.component.html',
 })
 export class RegisterComponent {
-  // Variables pour lier les champs de formulaire
-  username: string = '';
-  email: string = '';
-  password: string = '';
-  
-  // Fonction pour gérer la soumission du formulaire
+  user = {
+    email: '',
+    password: ''
+  };
+
+  constructor(private http: HttpClient) {}
+
   onSubmit() {
-    console.log('Form submitted', this.username, this.email, this.password);
-    // Ici tu peux ajouter la logique pour soumettre les données à un backend
+    this.http.post('http://localhost:5000/api/auth/register', this.user)
+      .subscribe({
+        next: (res) => {
+          console.log('✅ Utilisateur inscrit avec succès', res);
+          alert('Inscription réussie !');
+        },
+        error: (err) => {
+          console.error('❌ Erreur lors de l\'inscription', err);
+          alert('Erreur : ' + (err?.error?.message || 'Inconnue'));
+        }
+      });
   }
 }
