@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
+
   // Assure-toi que ce fichier existe bien
 })
 export class LoginComponent implements OnInit {
