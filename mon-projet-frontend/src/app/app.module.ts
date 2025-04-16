@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';  // Ajouté pour les forms template-driven
-import { ReactiveFormsModule } from '@angular/forms';  // Ajouté pour les Reactive Forms
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';  // Ajouté ici si tu veux l'utiliser
+import { RegisterComponent } from './auth/register/register.component';
+import { HomeComponent } from './home/home.component';
+import { RouterModule } from '@angular/router';
+import { routes } from './app.routes';
 
 @NgModule({
-  declarations: [
-     // N'oublie pas de déclarer ton LoginComponent ici
-   // N'oublie pas de déclarer ton RegisterComponent ici aussi si nécessaire
-  ],
+  declarations: [],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule  // Assure-toi que ReactiveFormsModule est bien là
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [],
-  bootstrap: []
+  bootstrap: [],
 })
-export class AppModule { }
+export class AppModule {}

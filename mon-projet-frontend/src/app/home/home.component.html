@@ -1,0 +1,149 @@
+<div class="home-container">
+  <header class="header">
+    <div class="logo">TAKTAK</div>
+    <nav class="nav-links">
+      <a routerLink="/">Accueil</a>
+      <a href="#">À propos</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+      <a routerLink="/login" class="btn-primary">Se connecter</a>
+    </nav>
+  </header>
+
+  <section class="hero-section">
+    <div class="hero-text">
+      <h1>Partagez vos trajets, réduisez vos coûts</h1>
+      <p>Trouvez un covoiturage fiable, rapide et écologique</p>
+      <div class="actions">
+        <button class="btn-primary">Trouver un trajet</button>
+        <button class="btn-secondary">Proposer un trajet</button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img
+        src="https://cdni.iconscout.com/illustration/premium/thumb/covoiturage-8637042-6909486.png?f=webp"
+        alt="Covoiturage"
+      />
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <i class="fas fa-users"></i>
+      <h3>Communauté fiable</h3>
+      <p>Des conducteurs et passagers vérifiés.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-leaf"></i>
+      <h3>Écologique</h3>
+      <p>Réduisez votre empreinte carbone.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-euro-sign"></i>
+      <h3>Économique</h3>
+      <p>Partagez les frais de transport.</p>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>Avis des conducteurs</h2>
+    <div class="testimonial-wrapper">
+      <button class="nav-arrow left" (click)="prevSlide()">&#10094;</button>
+
+      <div class="testimonial-slider" #testimonialSlider>
+        <div *ngFor="let avis of avisConducteurs" class="testimonial">
+          <p>« {{ avis.message }} »</p>
+          <div class="user-info">
+            <span>{{ avis.nom }} - {{ avis.ville }}</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="nav-arrow right" (click)="nextSlide()">&#10095;</button>
+    </div>
+  </section>
+
+  <section class="contact-area" id="contact">
+    <div class="container-contact">
+      <div class="map-form-wrapper">
+        <!-- Google Map -->
+        <div class="map-box">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12779.594247951557!2d10.1879613!3d36.8663286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13029efae01429db%3A0x6230cbcc6071a0e7!2sAriana!5e0!3m2!1sfr!2stn!4v1713277202303!5m2!1sfr!2stn"
+            width="100%"
+            height="100%"
+            frameborder="0"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+          >
+          </iframe>
+        </div>
+
+        <!-- Formulaire -->
+        <div class="form-box">
+          <h2>Get In Touch With Our Agents</h2>
+          <form>
+            <input type="text" placeholder="Your Name..." required />
+            <input type="email" placeholder="Your E-mail..." required />
+            <input type="text" placeholder="Subject..." required />
+            <textarea
+              rows="4"
+              placeholder="Your Message..."
+              required
+            ></textarea>
+            <button type="submit" class="send-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Coordonnées -->
+      <div class="contact-details">
+        <div class="contact-item">
+          <i class="fa fa-phone"></i>
+          <div>
+            <h4>+216 22 222 222</h4>
+            <p>Phone Number</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fa fa-envelope"></i>
+          <div>
+            <p>Email : TAKTAK&#64;gmail.com</p>
+            <p>Business Email</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h4>TAKTAK</h4>
+        <p>
+          Partagez vos trajets en toute sécurité et simplicité. Économisez tout
+          en faisant un geste pour la planète.
+        </p>
+      </div>
+      <div class="footer-column">
+        <h4>Liens rapides</h4>
+        <ul>
+          <li><a href="#">Accueil</a></li>
+          <li><a href="#">Trouver un trajet</a></li>
+          <li><a href="#">Proposer un trajet</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Contact</h4>
+        <p>Email : TAKTAK&#64;gmail.com</p>
+        <p>Téléphone : +216 22 222 222</p>
+        <p>Adresse : Tunis, Tunisie</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 TAKTAK. Tous droits réservés.</p>
+    </div>
+  </footer>
+</div>
