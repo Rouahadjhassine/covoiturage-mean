@@ -6,6 +6,6 @@ import { PassegerprofileComponent } from './profile/passegerprofile/passegerprof
 export const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
   { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, data: { isloginpage: true } },
   { path: 'profile', component: PassegerprofileComponent },
 ];

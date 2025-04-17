@@ -1,27 +1,4 @@
 <div class="home-container">
-  <header class="header">
-    <div class="logo">TAKTAK</div>
-    <nav class="nav-links">
-      <a routerLink="/search" class="nav-link">
-        <i class="fa fa-search"></i> Rechercher
-      </a>
-      <a routerLink="/publish" class="nav-link">
-        <i class="fa fa-plus-circle"></i> Publier un trajet
-      </a>
-
-      <div class="dropdown">
-        <button class="dropdown-toggle">
-          <i class="fa fa-user-circle"></i>
-          <i class="fa fa-chevron-down"></i>
-        </button>
-        <div class="dropdown-menu">
-          <a routerLink="/login">Connexion</a>
-          <a routerLink="/register">Inscription</a>
-        </div>
-      </div>
-    </nav>
-  </header>
-
   <section class="hero-section">
     <div class="hero-content">
       <div class="hero-text">
@@ -71,7 +48,7 @@
         </div>
       </div>
 
-      <button class="search-btn">Rechercher</button>
+      <button class="search-btn" [routerLink]="['/profile']">Rechercher</button>
     </div>
   </section>
 
@@ -176,34 +153,4 @@
       </div>
     </div>
   </section>
-
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-column">
-        <h4>TAKTAK</h4>
-        <p>
-          Partagez vos trajets en toute sécurité et simplicité. Économisez tout
-          en faisant un geste pour la planète.
-        </p>
-      </div>
-      <div class="footer-column">
-        <h4>Liens rapides</h4>
-        <ul>
-          <li><a href="#">Accueil</a></li>
-          <li><a href="#">Trouver un trajet</a></li>
-          <li><a href="#">Proposer un trajet</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Contact</h4>
-        <p>Email : TAKTAK&#64;gmail.com</p>
-        <p>Téléphone : +216 22 222 222</p>
-        <p>Adresse : Tunis, Tunisie</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 TAKTAK. Tous droits réservés.</p>
-    </div>
-  </footer>
 </div>
