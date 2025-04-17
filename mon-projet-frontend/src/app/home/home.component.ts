@@ -1,12 +1,12 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { CommonModule } from '@angular/common'; // ✅ à ajouter
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  standalone: true, // ✅ si tu es en mode standalone (Angular 17+)
+  standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [CommonModule], // ✅ ajoute ceci
+  imports: [CommonModule],
 })
 export class HomeComponent {
   @ViewChild('testimonialSlider', { static: false }) slider!: ElementRef;
@@ -34,6 +34,7 @@ export class HomeComponent {
     },
   ];
 
+  // === SLIDER AVIS ===
   nextSlide() {
     const el = this.slider?.nativeElement;
     if (el) el.scrollBy({ left: 320, behavior: 'smooth' });
@@ -42,5 +43,30 @@ export class HomeComponent {
   prevSlide() {
     const el = this.slider?.nativeElement;
     if (el) el.scrollBy({ left: -320, behavior: 'smooth' });
+  }
+
+  // === DATE D'AUJOURD'HUI ===
+  todayDate: string = new Date().toISOString().split('T')[0];
+
+  // === PASSAGER ===
+  passengerCount: number = 1;
+  showPassengerDropdown: boolean = false;
+
+  togglePassengerDropdown() {
+    this.showPassengerDropdown = !this.showPassengerDropdown;
+  }
+
+  incrementPassenger() {
+    if (this.passengerCount < 10) {
+      this.passengerCount++;
+      console.log('Incrémenté à', this.passengerCount);
+    }
+  }
+
+  decrementPassenger() {
+    if (this.passengerCount > 1) {
+      this.passengerCount--;
+      console.log('Décrémenté à', this.passengerCount);
+    }
   }
 }

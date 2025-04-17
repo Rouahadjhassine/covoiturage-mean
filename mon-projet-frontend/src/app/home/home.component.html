@@ -2,46 +2,106 @@
   <header class="header">
     <div class="logo">TAKTAK</div>
     <nav class="nav-links">
-      <a routerLink="/">Accueil</a>
-      <a href="#">À propos</a>
-      <a href="#">Services</a>
-      <a href="#">Contact</a>
-      <a routerLink="/login" class="btn-primary">Se connecter</a>
+      <a routerLink="/search" class="nav-link">
+        <i class="fa fa-search"></i> Rechercher
+      </a>
+      <a routerLink="/publish" class="nav-link">
+        <i class="fa fa-plus-circle"></i> Publier un trajet
+      </a>
+
+      <div class="dropdown">
+        <button class="dropdown-toggle">
+          <i class="fa fa-user-circle"></i>
+          <i class="fa fa-chevron-down"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a routerLink="/login">Connexion</a>
+          <a routerLink="/register">Inscription</a>
+        </div>
+      </div>
     </nav>
   </header>
 
   <section class="hero-section">
-    <div class="hero-text">
-      <h1>Partagez vos trajets, réduisez vos coûts</h1>
-      <p>Trouvez un covoiturage fiable, rapide et écologique</p>
-      <div class="actions">
-        <button class="btn-primary">Trouver un trajet</button>
-        <button class="btn-secondary">Proposer un trajet</button>
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Partagez vos trajets, réduisez vos coûts</h1>
+        <p>Trouvez un covoiturage fiable, rapide et écologique</p>
+      </div>
+      <div class="hero-image">
+        <img
+          src="https://cdni.iconscout.com/illustration/premium/thumb/covoiturage-8637042-6909486.png?f=webp"
+          alt="Covoiturage"
+        />
       </div>
     </div>
-    <div class="hero-image">
-      <img
-        src="https://cdni.iconscout.com/illustration/premium/thumb/covoiturage-8637042-6909486.png?f=webp"
-        alt="Covoiturage"
-      />
+
+    <div class="search-bar">
+      <div class="search-field">
+        <i class="fa fa-circle-dot"></i>
+        <input type="text" placeholder="Départ" />
+      </div>
+
+      <div class="search-field">
+        <i class="fa fa-circle-dot"></i>
+        <input type="text" placeholder="Destination" />
+      </div>
+
+      <div class="search-field">
+        <i class="fa fa-calendar"></i>
+        <input type="date" [value]="todayDate" />
+      </div>
+
+      <div class="passenger-container">
+        <!-- champ visible -->
+        <div class="passenger-display" (click)="togglePassengerDropdown()">
+          <i class="fas fa-user"></i> {{ passengerCount }} passager{{
+            passengerCount > 1 ? "s" : ""
+          }}
+        </div>
+
+        <!-- dropdown -->
+        <div class="passenger-dropdown" *ngIf="showPassengerDropdown">
+          <span class="label">Passager</span>
+          <div class="controls">
+            <button (click)="decrementPassenger()">−</button>
+            <span>{{ passengerCount }}</span>
+            <button (click)="incrementPassenger()">+</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="search-btn">Rechercher</button>
     </div>
   </section>
 
   <section class="features">
     <div class="feature">
-      <i class="fas fa-users"></i>
-      <h3>Communauté fiable</h3>
-      <p>Des conducteurs et passagers vérifiés.</p>
+      <i class="fas fa-euro-sign"></i>
+      <h3>Vos trajets préférés à petits prix</h3>
+      <p>
+        Où que vous alliez, en bus ou en covoiturage, trouvez le trajet idéal
+        parmi notre large choix de destinations à petits prix.
+      </p>
     </div>
     <div class="feature">
       <i class="fas fa-leaf"></i>
-      <h3>Écologique</h3>
-      <p>Réduisez votre empreinte carbone.</p>
+      <h3>Voyagez en toute confiance</h3>
+      <p>
+        Nous prenons le temps qu’il faut pour connaître nos membres et nos
+        compagnies de bus partenaires. Nous vérifions les avis, les profils et
+        les pièces d’identité. Vous savez donc avec qui vous allez voyager pour
+        réserver en toute confiance sur notre plateforme sécurisée.
+      </p>
     </div>
     <div class="feature">
-      <i class="fas fa-euro-sign"></i>
-      <h3>Économique</h3>
-      <p>Partagez les frais de transport.</p>
+      <i class="fas fa-users"></i>
+      <h3>Recherchez, cliquez et réservez !</h3>
+      <p>
+        Réserver un trajet devient encore plus simple ! Facile d'utilisation et
+        dotée de technologies avancées, notre appli vous permet de réserver un
+        trajet à proximité en un rien de temps.
+      </p>
     </div>
   </section>
 
@@ -82,17 +142,17 @@
 
         <!-- Formulaire -->
         <div class="form-box">
-          <h2>Get In Touch With Our Agents</h2>
+          <h2>Contactez nos agents</h2>
           <form>
-            <input type="text" placeholder="Your Name..." required />
-            <input type="email" placeholder="Your E-mail..." required />
-            <input type="text" placeholder="Subject..." required />
+            <input type="text" placeholder="Votre Nom..." required />
+            <input type="email" placeholder="Votre e-mail..." required />
+            <input type="text" placeholder="Sujet..." required />
             <textarea
               rows="4"
-              placeholder="Your Message..."
+              placeholder="Votre Message..."
               required
             ></textarea>
-            <button type="submit" class="send-btn">Send Message</button>
+            <button type="submit" class="send-btn">Envoyer un message</button>
           </form>
         </div>
       </div>
@@ -103,14 +163,14 @@
           <i class="fa fa-phone"></i>
           <div>
             <h4>+216 22 222 222</h4>
-            <p>Phone Number</p>
+            <p>Numéro de téléphone</p>
           </div>
         </div>
         <div class="contact-item">
           <i class="fa fa-envelope"></i>
           <div>
             <p>Email : TAKTAK&#64;gmail.com</p>
-            <p>Business Email</p>
+            <p>Courriel professionnel</p>
           </div>
         </div>
       </div>
