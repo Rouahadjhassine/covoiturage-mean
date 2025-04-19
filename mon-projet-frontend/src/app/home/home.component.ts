@@ -1,15 +1,14 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../footer/footer.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms'; // ← AJOUT ICI
 
 @Component({
   selector: 'app-home',
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule], // ← AJOUT FormsModule ici
 })
 export class HomeComponent {
   @ViewChild('testimonialSlider', { static: false }) slider!: ElementRef;
@@ -37,7 +36,7 @@ export class HomeComponent {
     },
   ];
 
-  // === SLIDER AVIS ===
+  // === SLIDER ===
   nextSlide() {
     const el = this.slider?.nativeElement;
     if (el) el.scrollBy({ left: 320, behavior: 'smooth' });
@@ -48,12 +47,17 @@ export class HomeComponent {
     if (el) el.scrollBy({ left: -320, behavior: 'smooth' });
   }
 
-  // === DATE D'AUJOURD'HUI ===
+  // === FORMULAIRE DE RECHERCHE ===
   todayDate: string = new Date().toISOString().split('T')[0];
 
-  // === PASSAGER ===
+  departure: string = '';
+  destination: string = '';
+  travelDate: string = this.todayDate; // valeur par défaut
+
   passengerCount: number = 1;
   showPassengerDropdown: boolean = false;
+
+  constructor(private router: Router) {}
 
   togglePassengerDropdown() {
     this.showPassengerDropdown = !this.showPassengerDropdown;
@@ -62,14 +66,24 @@ export class HomeComponent {
   incrementPassenger() {
     if (this.passengerCount < 10) {
       this.passengerCount++;
-      console.log('Incrémenté à', this.passengerCount);
     }
   }
 
   decrementPassenger() {
     if (this.passengerCount > 1) {
       this.passengerCount--;
-      console.log('Décrémenté à', this.passengerCount);
     }
+  }
+
+  onSearch() {
+    if (!this.departure || !this.destination || !this.travelDate) {
+      alert(
+        'Veuillez remplir tous les champs obligatoires : Départ, Destination et Date.'
+      );
+      return;
+    }
+
+    // Rediriger si tout est ok
+    this.router.navigate(['/recherche']);
   }
 }

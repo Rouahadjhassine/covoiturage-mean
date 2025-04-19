@@ -13,43 +13,44 @@
       </div>
     </div>
 
-    <div class="search-bar">
-      <div class="search-field">
-        <i class="fa fa-circle-dot"></i>
-        <input type="text" placeholder="Départ" />
-      </div>
-
-      <div class="search-field">
-        <i class="fa fa-circle-dot"></i>
-        <input type="text" placeholder="Destination" />
-      </div>
-
-      <div class="search-field">
-        <i class="fa fa-calendar"></i>
-        <input type="date" [value]="todayDate" />
-      </div>
-
-      <div class="passenger-container">
-        <!-- champ visible -->
-        <div class="passenger-display" (click)="togglePassengerDropdown()">
-          <i class="fas fa-user"></i> {{ passengerCount }} passager{{
-            passengerCount > 1 ? "s" : ""
-          }}
-        </div>
-
-        <!-- dropdown -->
-        <div class="passenger-dropdown" *ngIf="showPassengerDropdown">
-          <span class="label">Passager</span>
-          <div class="controls">
-            <button (click)="decrementPassenger()">−</button>
-            <span>{{ passengerCount }}</span>
-            <button (click)="incrementPassenger()">+</button>
-          </div>
-        </div>
-      </div>
-
-      <button class="search-btn" [routerLink]="['/profile']">Rechercher</button>
+    <!-- Champ Départ -->
+    <div class="search-field">
+      <i class="fa fa-circle-dot"></i>
+      <input type="text" placeholder="Départ" [(ngModel)]="departure" />
     </div>
+
+    <!-- Champ Destination -->
+    <div class="search-field">
+      <i class="fa fa-circle-dot"></i>
+      <input type="text" placeholder="Destination" [(ngModel)]="destination" />
+    </div>
+
+    <!-- Champ Date -->
+    <div class="search-field">
+      <i class="fa fa-calendar"></i>
+      <input type="date" [min]="todayDate" [(ngModel)]="travelDate" />
+    </div>
+
+    <!-- Passager (inchangé) -->
+    <div class="passenger-container">
+      <div class="passenger-display" (click)="togglePassengerDropdown()">
+        <i class="fas fa-user"></i> {{ passengerCount }} passager{{
+          passengerCount > 1 ? "s" : ""
+        }}
+      </div>
+
+      <div class="passenger-dropdown" *ngIf="showPassengerDropdown">
+        <span class="label">Passager</span>
+        <div class="controls">
+          <button (click)="decrementPassenger()">−</button>
+          <span>{{ passengerCount }}</span>
+          <button (click)="incrementPassenger()">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bouton Rechercher -->
+    <button class="search-btn" (click)="onSearch()">Rechercher</button>
   </section>
 
   <section class="features">
