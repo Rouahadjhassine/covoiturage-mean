@@ -9,12 +9,11 @@
   display: flex;
   justify-content: space-between;
   padding: 130px 70px;
-  background-color: #eaf4ff;
   flex-wrap: wrap;
 }
 
 .hero-text {
-  max-width: 600px;
+  max-width: 100%;
 }
 
 .hero-text h1 {
