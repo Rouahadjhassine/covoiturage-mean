@@ -2,7 +2,11 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'; // ← AJOUT ICI
-
+interface Route {
+  from: string;
+  to: string;
+  link: string;
+}
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -86,4 +90,12 @@ export class HomeComponent {
     // Rediriger si tout est ok
     this.router.navigate(['/recherche']);
   }
+  popularRoutes: Route[] = [
+    { from: 'Tunis', to: 'Sfax', link: '/routes/lille-paris' },
+    { from: 'Tunis', to: 'Sousse', link: '/routes/paris-lille' },
+    { from: 'Nabeul', to: 'Tunis', link: '/routes/grenoble-lyon' },
+    { from: 'Sfax', to: 'Tunis', link: '/routes/lille-paris' },
+    { from: 'Sousse', to: 'Sfax', link: '/routes/paris-lille' },
+    { from: 'Nabeul', to: 'Jerba', link: '/routes/grenoble-lyon' },
+  ];
 }

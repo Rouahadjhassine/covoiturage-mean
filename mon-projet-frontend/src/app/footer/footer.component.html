@@ -1,30 +1,184 @@
-<!-- shared/footer.component.html -->
-<footer class="footer">
-  <div class="footer-container">
-    <div class="footer-column">
-      <h4>TAKTAK</h4>
-      <p>
-        Partagez vos trajets en toute sécurité et simplicité. Économisez tout en
-        faisant un geste pour la planète.
-      </p>
+<footer class="bg-white">
+  <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="lg:flex lg:items-start lg:gap-8">
+      <div class="text-teal-600">
+        <!-- Logo SVG (inchangé) -->
+      </div>
+
+      <div
+        class="mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16"
+      >
+        <div class="col-span-2">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900">
+              Recevez nos dernières infos !
+            </h2>
+            <p class="mt-4 text-gray-500">
+              Abonnez-vous pour rester informé des nouveautés et des offres
+              spéciales de covoiturage.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-span-2 lg:col-span-3 lg:flex lg:items-end">
+          <form class="w-full">
+            <label for="UserEmail" class="sr-only">Email</label>
+            <div
+              class="border border-gray-100 p-2 focus-within:ring-3 sm:flex sm:items-center sm:gap-4"
+            >
+              <input
+                type="email"
+                id="UserEmail"
+                placeholder="TAKTAK@covoiturage.com"
+                class="w-full border-none focus:border-transparent focus:ring-transparent sm:text-sm"
+              />
+              <button
+                class="mt-1 w-full bg-teal-500 px-6 py-3 text-sm font-bold tracking-wide text-white uppercase transition-none hover:bg-teal-600 sm:mt-0 sm:w-auto sm:shrink-0"
+              >
+                S'inscrire
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-span-2 sm:col-span-1">
+          <p class="font-medium text-gray-900">Services</p>
+          <ul class="mt-6 space-y-4 text-sm">
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >Proposer un trajet</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >Rechercher un trajet</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >Assistance</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >Application mobile</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >Tarification</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-span-2 sm:col-span-1">
+          <p class="font-medium text-gray-900">Entreprise</p>
+          <ul class="mt-6 space-y-4 text-sm">
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >À propos</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >Notre équipe</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >Carrières</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-span-2 sm:col-span-1">
+          <p class="font-medium text-gray-900">Liens utiles</p>
+          <ul class="mt-6 space-y-4 text-sm">
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >Contact</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >FAQ</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >Chat en direct</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-span-2 sm:col-span-1">
+          <p class="font-medium text-gray-900">Légal</p>
+          <ul class="mt-6 space-y-4 text-sm">
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >Accessibilité</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >Conditions générales</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >Politique de remboursement</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >Mentions légales</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-span-2 sm:col-span-1">
+          <p class="font-medium text-gray-900">Téléchargements</p>
+          <ul class="mt-6 space-y-4 text-sm">
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >App iOS</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-gray-700 transition hover:opacity-75"
+                >App Android</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <ul
+          class="col-span-2 flex justify-start gap-6 lg:col-span-5 lg:justify-end"
+        >
+          <li>
+            <a href="#" class="text-gray-700 transition hover:opacity-75">
+              <span class="sr-only">Facebook</span>
+              <!-- SVG Facebook -->
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-700 transition hover:opacity-75">
+              <span class="sr-only">Instagram</span>
+              <!-- SVG Instagram -->
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-700 transition hover:opacity-75">
+              <span class="sr-only">Twitter</span>
+              <!-- SVG Twitter -->
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-column">
-      <h4>Liens rapides</h4>
-      <ul>
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#">Trouver un trajet</a></li>
-        <li><a href="#">Proposer un trajet</a></li>
-        <li><a href="#">FAQ</a></li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <h4>Contact</h4>
-      <p>Email : TAKTAK&#64;gmail.com</p>
-      <p>Téléphone : +216 22 222 222</p>
-      <p>Adresse : Tunis, Tunisie</p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>&copy; 2025 TAKTAK. Tous droits réservés.</p>
   </div>
 </footer>
