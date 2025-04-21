@@ -13,12 +13,18 @@ import { filter } from 'rxjs/operators';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   isloginpage: boolean = false;
+  issignuppage: boolean = false;
+
   constructor(private router: Router) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
         const currentRoute = this.router.routerState.root.firstChild;
+
         if (
           currentRoute &&
           currentRoute.snapshot.data['isloginpage'] !== undefined
