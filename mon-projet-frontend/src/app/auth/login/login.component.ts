@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -15,12 +16,12 @@ export class LoginComponent implements OnInit {
   submitted = false;
   successMessage = '';
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
   }
 
@@ -30,13 +31,28 @@ export class LoginComponent implements OnInit {
 
   logindata() {
     this.submitted = true;
+    if (this.loginForm.invalid) return;
 
-    if (this.loginForm.invalid) {
-      return;
-    }
+    const loginData = {
+      email: this.loginForm.value.username,
+      password: this.loginForm.value.password,
+    };
 
-    // Simuler une connexion réussie
-    console.log(this.loginForm.value);
-    this.successMessage = 'Connexion réussie ! Bienvenue 👋';
+    this.http.post<any>('http://localhost:5000/api/auth/login', loginData).subscribe({
+      next: (res) => {
+      const role = res.user?.role;
+      if (role === 'admin') this.successMessage = 'Bienvenue admin 👑';
+      else if (role === 'conducteur') this.successMessage = 'Bienvenue conducteur 🚗';
+      else if (role === 'passager') this.successMessage = 'Bienvenue passager 🧍‍♂️';
+      else this.successMessage = 'Bienvenue 👋';
+
+      // Redirect to home page on successful login
+      window.location.href = '/';
+      },
+      error: (err) => {
+      console.error('Erreur lors de la connexion', err);
+      this.successMessage = 'Erreur lors de la connexion';
+      },
+    });
   }
 }

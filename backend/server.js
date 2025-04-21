@@ -4,6 +4,8 @@ const cors = require('cors');
 require('dotenv').config(); // Charge les variables d'environnement
 
 const authRoutes = require('./routes/authRoutes'); // Importation des routes d'authentification
+const trajetRoutes = require('./routes/trajetRoutes');
+
 
 const app = express();
 
@@ -29,7 +31,11 @@ mongoose.connect(mongoUri)
 
 // Routes
 app.use('/api/auth', authRoutes); // Exemple : POST /api/auth/login
+app.use('/api/trajets', trajetRoutes);
 app.use(cors({ origin: 'http://localhost:4200' }));
+
+
+
 
 // Lancer le serveur
 const port = process.env.PORT || 5000;

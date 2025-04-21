@@ -8,12 +8,15 @@ import { HttpClient } from '@angular/common/http';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
   user = {
     email: '',
-    password: ''
+    password: '',
+    role: 'passager' // valeur par défaut si tu veux
   };
+  
 
   constructor(private http: HttpClient) {}
 
