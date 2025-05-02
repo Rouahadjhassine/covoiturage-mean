@@ -101,6 +101,25 @@
         <h2 class="text-2xl font-semibold text-center mb-6">Créer un compte</h2>
       
         <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="space-y-4">
+          <!-- Nom d'utilisateur -->
+          <div>
+            <label for="username" class="block text-sm font-medium text-gray-700">Nom d'utilisateur</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              [(ngModel)]="user.username"
+              required
+              #username="ngModel"
+              placeholder="Nom d'utilisateur"
+              class="mt-1 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
+              [ngClass]="{ 'border-red-500': username.invalid && (username.touched || registerForm.submitted) }"
+            />
+            <div *ngIf="username.invalid && (username.touched || registerForm.submitted)" class="text-sm text-red-500 mt-1">
+              Nom d'utilisateur requis
+            </div>
+          </div>
+        
           <!-- Email -->
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
@@ -144,29 +163,29 @@
             <label for="role" class="block text-sm font-medium text-gray-700">Rôle</label>
             <div class="mt-1 flex space-x-4">
               <label class="inline-flex items-center">
-              <input
-                type="radio"
-                id="role-passager"
-                name="role"
-                value="passager"
-                [(ngModel)]="user.role"
-                required
-                #role="ngModel"
-                class="form-radio text-black focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
-              />
-              <span class="ml-2">Passager</span>
+                <input
+                  type="radio"
+                  id="role-passager"
+                  name="role"
+                  value="passager"
+                  [(ngModel)]="user.role"
+                  required
+                  #role="ngModel"
+                  class="form-radio text-black focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
+                />
+                <span class="ml-2">Passager</span>
               </label>
               <label class="inline-flex items-center">
-              <input
-                type="radio"
-                id="role-conducteur"
-                name="role"
-                value="conducteur"
-                [(ngModel)]="user.role"
-                required
-                class="form-radio text-black focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
-              />
-              <span class="ml-2">Conducteur</span>
+                <input
+                  type="radio"
+                  id="role-conducteur"
+                  name="role"
+                  value="conducteur"
+                  [(ngModel)]="user.role"
+                  required
+                  class="form-radio text-black focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
+                />
+                <span class="ml-2">Conducteur</span>
               </label>
             </div>
             <div *ngIf="role.invalid && (role.touched || registerForm.submitted)" class="text-sm text-red-500 mt-1">

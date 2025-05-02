@@ -1,8 +1,5 @@
 <div class="min-h-screen flex items-center justify-center bg-white">
-  <section
-    class="w-full text-center my-8 bg-gradient-to-b from-blue-50 to-white py-12"
-    style="margin-top: 20px"
-  >
+  <section class="w-full text-center my-8 bg-gradient-to-b from-blue-50 to-white py-12" style="margin-top: 20px">
     <h2 class="text-3xl font-bold text-[#043B47] mb-12">
       Où voulez-vous aller ?
     </h2>
@@ -12,41 +9,15 @@
         Planifiez votre trajet en quelques clics
       </p>
 
-      <div
-        class="search-bar flex items-center justify-between bg-white rounded-full shadow-lg px-6 py-3 gap-4"
-      >
-        <!-- Départ -->
-        <div
-          class="flex items-center gap-3 px-4 py-2 bg-gray-100 rounded-l-full"
-        >
-          <i class="fa fa-circle-dot text-[#7196A8]"></i>
+      <div class="search-bar flex items-center justify-between bg-white rounded-full shadow-lg px-6 py-3 gap-4">
+        <!-- Requête libre -->
+        <div class="flex items-center gap-3 px-4 py-2 bg-gray-100 rounded-l-full">
+          <i class="fa fa-search text-[#7196A8]"></i>
           <input
             type="text"
-            placeholder="Départ"
-            class="bg-transparent focus:outline-none text-[#043B47] w-32"
-            [(ngModel)]="departure"
-          />
-        </div>
-
-        <!-- Destination -->
-        <div class="flex items-center gap-3 px-4 py-2 border-l border-gray-300">
-          <i class="fa fa-circle-dot text-[#7196A8]"></i>
-          <input
-            type="text"
-            placeholder="Destination"
-            class="bg-transparent focus:outline-none text-[#043B47] w-32"
-            [(ngModel)]="destination"
-          />
-        </div>
-
-        <!-- Date -->
-        <div class="flex items-center gap-3 px-4 py-2 border-l border-gray-300">
-          <i class="fa fa-calendar text-[#7196A8]"></i>
-          <input
-            type="date"
-            class="bg-transparent focus:outline-none text-[#043B47]"
-            [min]="todayDate"
-            [(ngModel)]="travelDate"
+            placeholder="Je cherche un trajet à ..."
+            class="bg-transparent focus:outline-none text-[#043B47] w-80"
+            [(ngModel)]="searchQuery"  
           />
         </div>
 
@@ -57,11 +28,7 @@
         >
           <div class="flex items-center gap-2 text-[#043B47]">
             <i class="fas fa-user"></i>
-            <span
-              >{{ passengerCount }} passager{{
-                passengerCount > 1 ? "s" : ""
-              }}</span
-            >
+            <span>{{ passengerCount }} passager{{ passengerCount > 1 ? 's' : '' }}</span>
           </div>
           <!-- Dropdown -->
           <div
@@ -98,5 +65,53 @@
         </button>
       </div>
     </div>
+
+<!-- Résultats de recherche -->
+<div *ngIf="trajets.length > 0" class="mt-12">
+  <h3 class="text-2xl font-semibold text-[#043B47] mb-8">Résultats de recherche :</h3>
+  
+  <ul class="space-y-6">
+    <li 
+      *ngFor="let trajet of trajets" 
+      class="p-6 border border-gray-200 rounded-xl shadow-md bg-gradient-to-r from-blue-50 to-white hover:shadow-lg transform transition duration-300"
+      style="transition: transform 0.3s, box-shadow 0.3s; will-change: transform;"
+    >
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <!-- Information du trajet -->
+        <div>
+          <p class="text-2xl font-bold text-[#043B47]">{{ trajet.depart }} → {{ trajet.arrivee }}</p>
+          <p class="text-sm text-gray-500 mt-1">{{ trajet.dateDepart | date:'fullDate' }}</p>
+        </div>
+
+        <!-- Passagers -->
+        <div class="flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full">
+          <i class="fas fa-user"></i>
+          <span class="text-lg font-medium">{{ trajet.passengers }} passager{{ trajet.passengers > 1 ? 's' : '' }}</span>
+        </div>
+      </div>
+
+      <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 items-center gap-4">
+        <!-- Horaires -->
+        <p class="text-sm text-gray-700"><strong>Heure de départ :</strong> {{ trajet.dateDepart | date:'shortTime' }}</p>
+        <div class="flex justify-center items-center text-[#043B47] text-2xl">
+          <i class="fas fa-long-arrow-alt-right"></i>
+        </div>
+        <p class="text-sm text-gray-700"><strong>Heure d'arrivée :</strong> {{ trajet.dateArrivee | date:'shortTime' }}</p>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<style>
+  li:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  li {
+    width: 100%; /* Prevent width changes on hover */
+  }
+</style>
+
   </section>
 </div>

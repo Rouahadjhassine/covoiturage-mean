@@ -1,0 +1,630 @@
+{
+  "settings": {
+    "languages": [
+      "fr"
+    ],
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp",
+    "executeActionsBeforeAnswers": false,
+    "calculateSentiment": true
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager"
+    },
+    "locales": [
+      "fr"
+    ],
+    "languageNames": {},
+    "domainManagers": {
+      "fr": {
+        "settings": {
+          "locale": "fr",
+          "trainByDomain": false,
+          "tag": "domain-manager-fr",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "%villearrivee%,%villedepart%,a,de,trajet": {
+            "intent": "search.traject",
+            "domain": "default"
+          },
+          "%villearrivee%,%villedepart%,a,cherch,de,je,trajet,un": {
+            "intent": "search.traject",
+            "domain": "default"
+          },
+          "%villearrivee%,cherch,je,pour,trajet,un": {
+            "intent": "search.traject",
+            "domain": "default"
+          },
+          "%villearrivee%,%villedepart%,a,cherch,de,demain,je,matin,trajet,un": {
+            "intent": "search.traject",
+            "domain": "default"
+          },
+          "%villearrivee%,%villedepart%,a,apres-mid,cherch,de,demain,je,trajet,un": {
+            "intent": "search.traject",
+            "domain": "default"
+          },
+          "%villearrivee%,%villedepart%,a,cherch,de,demain,je,soir,trajet,un": {
+            "intent": "search.traject",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "search.traject": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "trajet de %villeDepart% à %villeArrivee%",
+            "intent": "search.traject"
+          },
+          {
+            "domain": "default",
+            "utterance": "je cherche un trajet de %villeDepart% à %villeArrivee%",
+            "intent": "search.traject"
+          },
+          {
+            "domain": "default",
+            "utterance": "je cherche un trajet pour %villeArrivee%",
+            "intent": "search.traject"
+          },
+          {
+            "domain": "default",
+            "utterance": "je cherche un trajet de %villeDepart% à %villeArrivee% demain matin",
+            "intent": "search.traject"
+          },
+          {
+            "domain": "default",
+            "utterance": "je cherche un trajet de %villeDepart% à %villeArrivee% demain après-midi",
+            "intent": "search.traject"
+          },
+          {
+            "domain": "default",
+            "utterance": "je cherche un trajet de %villeDepart% à %villeArrivee% demain soir",
+            "intent": "search.traject"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "fr",
+              "tag": "nlu-fr",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "trajet": 1,
+              "de": 1,
+              "%villedepart%": 1,
+              "a": 1,
+              "%villearrivee%": 1,
+              "je": 1,
+              "cherch": 1,
+              "un": 1,
+              "pour": 1,
+              "demain": 1,
+              "matin": 1,
+              "apres-mid": 1,
+              "soir": 1
+            },
+            "intents": {
+              "search.traject": 1
+            },
+            "intentFeatures": {
+              "search.traject": {
+                "trajet": 1,
+                "de": 1,
+                "%villedepart%": 1,
+                "a": 1,
+                "%villearrivee%": 1,
+                "je": 1,
+                "cherch": 1,
+                "un": 1,
+                "pour": 1,
+                "demain": 1,
+                "matin": 1,
+                "apres-mid": 1,
+                "soir": 1
+              }
+            },
+            "featuresToIntent": {
+              "trajet": [
+                "search.traject"
+              ],
+              "de": [
+                "search.traject"
+              ],
+              "%villedepart%": [
+                "search.traject"
+              ],
+              "a": [
+                "search.traject"
+              ],
+              "%villearrivee%": [
+                "search.traject"
+              ],
+              "je": [
+                "search.traject"
+              ],
+              "cherch": [
+                "search.traject"
+              ],
+              "un": [
+                "search.traject"
+              ],
+              "pour": [
+                "search.traject"
+              ],
+              "demain": [
+                "search.traject"
+              ],
+              "matin": [
+                "search.traject"
+              ],
+              "apres-mid": [
+                "search.traject"
+              ],
+              "soir": [
+                "search.traject"
+              ]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "fr",
+                "tag": "nlu-fr",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "trajet",
+                "de",
+                "%villedepart%",
+                "a",
+                "%villearrivee%",
+                "je",
+                "cherch",
+                "un",
+                "pour",
+                "demain",
+                "matin",
+                "apres-mid",
+                "soir"
+              ],
+              "intents": [
+                "search.traject"
+              ],
+              "perceptrons": [
+                [
+                  4.318548202514648,
+                  1.1295053958892822,
+                  1.1295053958892822,
+                  1.1295053958892822,
+                  4.318548202514648,
+                  0.08794736862182617,
+                  0.08794736862182617,
+                  0.08794736862182617,
+                  3.1840453147888184,
+                  -0.12258582562208176,
+                  -0.035590603947639465,
+                  -0.0369066447019577,
+                  -0.054246533662080765,
+                  2.160245965224709
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      [
+        "fr",
+        "trajet de %villeDepart% à %villeArrivee%"
+      ],
+      [
+        "fr",
+        "je cherche un trajet de %villeDepart% à %villeArrivee%"
+      ],
+      [
+        "fr",
+        "je cherche un trajet pour %villeArrivee%"
+      ],
+      [
+        "fr",
+        "je cherche un trajet de %villeDepart% à %villeArrivee% demain matin"
+      ],
+      [
+        "fr",
+        "je cherche un trajet de %villeDepart% à %villeArrivee% demain après-midi"
+      ],
+      [
+        "fr",
+        "je cherche un trajet de %villeDepart% à %villeArrivee% demain soir"
+      ]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {
+      "fr": {
+        "villeDepart": {
+          "name": "villeDepart",
+          "type": "enum",
+          "rules": [
+            {
+              "option": "Tunis",
+              "texts": [
+                "Tunis"
+              ]
+            },
+            {
+              "option": "Sfax",
+              "texts": [
+                "Sfax"
+              ]
+            },
+            {
+              "option": "Sousse",
+              "texts": [
+                "Sousse"
+              ]
+            },
+            {
+              "option": "Ariana",
+              "texts": [
+                "Ariana"
+              ]
+            },
+            {
+              "option": "Gabès",
+              "texts": [
+                "Gabès"
+              ]
+            },
+            {
+              "option": "Nabeul",
+              "texts": [
+                "Nabeul"
+              ]
+            },
+            {
+              "option": "Kairouan",
+              "texts": [
+                "Kairouan"
+              ]
+            },
+            {
+              "option": "Bizerte",
+              "texts": [
+                "Bizerte"
+              ]
+            },
+            {
+              "option": "Kasserine",
+              "texts": [
+                "Kasserine"
+              ]
+            },
+            {
+              "option": "Monastir",
+              "texts": [
+                "Monastir"
+              ]
+            },
+            {
+              "option": "Tataouine",
+              "texts": [
+                "Tataouine"
+              ]
+            },
+            {
+              "option": "Mahdia",
+              "texts": [
+                "Mahdia"
+              ]
+            },
+            {
+              "option": "Tozeur",
+              "texts": [
+                "Tozeur"
+              ]
+            },
+            {
+              "option": "Beja",
+              "texts": [
+                "Beja"
+              ]
+            },
+            {
+              "option": "Jendouba",
+              "texts": [
+                "Jendouba"
+              ]
+            },
+            {
+              "option": "Gafsa",
+              "texts": [
+                "Gafsa"
+              ]
+            },
+            {
+              "option": "Zaghouan",
+              "texts": [
+                "Zaghouan"
+              ]
+            },
+            {
+              "option": "Ben Arous",
+              "texts": [
+                "Ben Arous"
+              ]
+            },
+            {
+              "option": "Medenine",
+              "texts": [
+                "Medenine"
+              ]
+            },
+            {
+              "option": "Siliana",
+              "texts": [
+                "Siliana"
+              ]
+            },
+            {
+              "option": "Manouba",
+              "texts": [
+                "Manouba"
+              ]
+            },
+            {
+              "option": "Kebili",
+              "texts": [
+                "Kebili"
+              ]
+            },
+            {
+              "option": "Nefta",
+              "texts": [
+                "Nefta"
+              ]
+            },
+            {
+              "option": "Douz",
+              "texts": [
+                "Douz"
+              ]
+            }
+          ]
+        },
+        "villeArrivee": {
+          "name": "villeArrivee",
+          "type": "enum",
+          "rules": [
+            {
+              "option": "Tunis",
+              "texts": [
+                "Tunis"
+              ]
+            },
+            {
+              "option": "Sfax",
+              "texts": [
+                "Sfax"
+              ]
+            },
+            {
+              "option": "Sousse",
+              "texts": [
+                "Sousse"
+              ]
+            },
+            {
+              "option": "Ariana",
+              "texts": [
+                "Ariana"
+              ]
+            },
+            {
+              "option": "Gabès",
+              "texts": [
+                "Gabès"
+              ]
+            },
+            {
+              "option": "Nabeul",
+              "texts": [
+                "Nabeul"
+              ]
+            },
+            {
+              "option": "Kairouan",
+              "texts": [
+                "Kairouan"
+              ]
+            },
+            {
+              "option": "Bizerte",
+              "texts": [
+                "Bizerte"
+              ]
+            },
+            {
+              "option": "Kasserine",
+              "texts": [
+                "Kasserine"
+              ]
+            },
+            {
+              "option": "Monastir",
+              "texts": [
+                "Monastir"
+              ]
+            },
+            {
+              "option": "Tataouine",
+              "texts": [
+                "Tataouine"
+              ]
+            },
+            {
+              "option": "Mahdia",
+              "texts": [
+                "Mahdia"
+              ]
+            },
+            {
+              "option": "Tozeur",
+              "texts": [
+                "Tozeur"
+              ]
+            },
+            {
+              "option": "Beja",
+              "texts": [
+                "Beja"
+              ]
+            },
+            {
+              "option": "Jendouba",
+              "texts": [
+                "Jendouba"
+              ]
+            },
+            {
+              "option": "Gafsa",
+              "texts": [
+                "Gafsa"
+              ]
+            },
+            {
+              "option": "Zaghouan",
+              "texts": [
+                "Zaghouan"
+              ]
+            },
+            {
+              "option": "Ben Arous",
+              "texts": [
+                "Ben Arous"
+              ]
+            },
+            {
+              "option": "Medenine",
+              "texts": [
+                "Medenine"
+              ]
+            },
+            {
+              "option": "Siliana",
+              "texts": [
+                "Siliana"
+              ]
+            },
+            {
+              "option": "Manouba",
+              "texts": [
+                "Manouba"
+              ]
+            },
+            {
+              "option": "Kebili",
+              "texts": [
+                "Kebili"
+              ]
+            },
+            {
+              "option": "Nefta",
+              "texts": [
+                "Nefta"
+              ]
+            },
+            {
+              "option": "Douz",
+              "texts": [
+                "Douz"
+              ]
+            }
+          ]
+        },
+        "moment": {
+          "name": "moment",
+          "type": "enum",
+          "rules": [
+            {
+              "option": "matin",
+              "texts": [
+                "matin"
+              ]
+            },
+            {
+              "option": "après-midi",
+              "texts": [
+                "après-midi"
+              ]
+            },
+            {
+              "option": "soir",
+              "texts": [
+                "soir"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {}
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {
+    "search.traject": {
+      "villeDepart": {
+        "intent": "search.traject",
+        "entity": "villeDepart",
+        "mandatory": false,
+        "locales": {}
+      },
+      "villeArrivee": {
+        "intent": "search.traject",
+        "entity": "villeArrivee",
+        "mandatory": false,
+        "locales": {}
+      }
+    }
+  }
+}

@@ -14,6 +14,7 @@ export class RegisterComponent {
   user = {
     email: '',
     password: '',
+    username:'',
     role: 'passager' // valeur par défaut si tu veux
 
   };

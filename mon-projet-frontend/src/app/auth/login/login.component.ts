@@ -45,11 +45,13 @@ export class LoginComponent implements OnInit {
 
     this.http.post<any>('http://localhost:5000/api/auth/login', loginData).subscribe({
       next: (res) => {
+        localStorage.setItem('token', res.token);
       const role = res.user?.role;
+      const username = res.user?.username;
       if (role === 'admin') this.successMessage = 'Bienvenue admin 👑';
       else if (role === 'conducteur') this.successMessage = 'Bienvenue conducteur 🚗';
       else if (role === 'passager') this.successMessage = 'Bienvenue passager 🧍‍♂️';
-      else this.successMessage = 'Bienvenue 👋';
+      else this.successMessage = `Bienvenue ${username} 👋`;
 
       // Redirect to home page on successful login
       window.location.href = '/';
