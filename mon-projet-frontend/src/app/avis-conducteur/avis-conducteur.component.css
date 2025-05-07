@@ -1,0 +1,26 @@
+
+.review-card {
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 178, 255, 0.2);
+}
+.star-rating .star {
+    transition: all 0.2s ease;
+}
+.star-rating .star:hover {
+    transform: scale(1.2);
+}
+.progress-bar {
+    transition: width 1s ease-in-out;
+}
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
