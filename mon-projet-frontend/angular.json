@@ -34,11 +34,10 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/font-awesome/css/font-awesome.css"
             ],
-<<<<<<< HEAD
+
             "scripts": ["src/assets/js/admin.js"]
-=======
-            "scripts": ["src/assets/js/profile.js","src/assets/js/recherche.js","src/assets/js/avis.js"]
->>>>>>> a0784a474760cc9426b5ae4efdf731a08cc54e8f
+
+ 
           },
           "configurations": {
             "production": {
