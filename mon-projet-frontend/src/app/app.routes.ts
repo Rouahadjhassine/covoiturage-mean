@@ -6,6 +6,7 @@ import { RechercheTrajetComponent } from './recherchetrajet/recherchetrajet.comp
 import { RegisterComponent } from './auth/register/register.component';
 import { CarpoolingCalculatorComponent } from './carpooling-calculator/carpooling-calculator.component';
 import { FiltretrajetComponent } from './filtretrajet/filtretrajet.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -21,4 +22,5 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent ,data: { isloginpage: true } },
   { path: 'carpooling', component: CarpoolingCalculatorComponent },
   { path: 'filtre', component: FiltretrajetComponent },
+  { path: 'profilepassager', component: ProfileComponent },
 ];
