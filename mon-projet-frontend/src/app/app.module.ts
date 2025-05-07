@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
+import { ButtonModule } from 'primeng/button';
+import { ChartModule } from 'angular-highcharts';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -11,10 +13,14 @@ import { routes } from './app.routes';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
+    ButtonModule,
+    ChartModule,
+    FontAwesomeModule,
   ],
   declarations: [],
-
   providers: [],
-  bootstrap: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA], // Ajoutez cette ligne pour ignorer les erreurs de Web Component
+
+  bootstrap: [], // Définir AppComponent comme composant bootstrap
 })
 export class AppModule {}

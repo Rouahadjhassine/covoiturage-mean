@@ -10,6 +10,7 @@ import { filter } from 'rxjs/operators';
   selector: 'app-root',
   standalone: true,
   imports: [RouterModule, HeaderComponent, FooterComponent],
+  styleUrls: ['./app.component.scss'],
   templateUrl: './app.component.html',
 })
 export class AppComponent {

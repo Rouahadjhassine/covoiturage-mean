@@ -1,18 +1,9 @@
 @if (!isloginpage) { <app-header></app-header>}
 
-
-<div class="mx-auto mt-10 w-screen">
-  <!-- Container for the main content -->
-  <router-outlet></router-outlet>
-</div>
-
+<!-- Container for the main content -->
+<router-outlet></router-outlet>
 
 @if (!isloginpage) {
-    <app-footer></app-footer>
-    
+<app-footer></app-footer>
 
 }
-
-
-
-

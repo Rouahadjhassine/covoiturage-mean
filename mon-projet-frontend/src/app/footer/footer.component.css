@@ -1,0 +1,23 @@
+.footer-gradient {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.btn-publish {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  transition: all 0.3s;
+}
+.btn-publish:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+}
+.social-icon {
+  transition: all 0.3s;
+}
+.social-icon:hover {
+  transform: translateY(-3px);
+}
+.hero-gradient {
+  background: linear-gradient(135deg, #2563eb 0%, #059669 100%);
+}

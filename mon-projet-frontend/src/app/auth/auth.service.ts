@@ -9,7 +9,7 @@ interface LoginResponse {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private apiUrl = 'http://localhost:5000/api/auth';
@@ -17,7 +17,10 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password });
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, {
+      email,
+      password,
+    });
   }
 
   register(email: string, password: string): Observable<any> {

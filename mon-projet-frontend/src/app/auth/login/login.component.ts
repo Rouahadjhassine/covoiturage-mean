@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -43,21 +44,25 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.value.password,
     };
 
-    this.http.post<any>('http://localhost:5000/api/auth/login', loginData).subscribe({
-      next: (res) => {
-      const role = res.user?.role;
-      if (role === 'admin') this.successMessage = 'Bienvenue admin 👑';
-      else if (role === 'conducteur') this.successMessage = 'Bienvenue conducteur 🚗';
-      else if (role === 'passager') this.successMessage = 'Bienvenue passager 🧍‍♂️';
-      else this.successMessage = 'Bienvenue 👋';
+    this.http
+      .post<any>('http://localhost:5000/api/auth/login', loginData)
+      .subscribe({
+        next: (res) => {
+          const role = res.user?.role;
+          if (role === 'admin') this.successMessage = 'Bienvenue admin 👑';
+          else if (role === 'conducteur')
+            this.successMessage = 'Bienvenue conducteur 🚗';
+          else if (role === 'passager')
+            this.successMessage = 'Bienvenue passager 🧍‍♂️';
+          else this.successMessage = 'Bienvenue 👋';
 
-      // Redirect to home page on successful login
-      window.location.href = '/';
-      },
-      error: (err) => {
-      console.error('Erreur lors de la connexion', err);
-      this.successMessage = 'Erreur lors de la connexion';
-      },
-    });
+          // Redirect to home page on successful login
+          window.location.href = '/';
+        },
+        error: (err) => {
+          console.error('Erreur lors de la connexion', err);
+          this.successMessage = 'Erreur lors de la connexion';
+        },
+      });
   }
 }

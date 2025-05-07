@@ -1,214 +1,682 @@
-<div class="home-container w-full">
-  <section class="hero-section">
-    <div class="hero-content">
-      <div class="hero-text">
-        <h1>Partagez vos trajets, réduisez vos coûts</h1>
-        <p>Trouvez un covoiturage fiable, rapide et écologique</p>
-      </div>
-      <div class="hero-image">
-        <img
-          src="https://cdni.iconscout.com/illustration/premium/thumb/covoiturage-8637042-6909486.png?f=webp"
-          alt="Covoiturage"
-        />
-      </div>
-    </div>
+<div class="font-sans bg-gray-50 antialiased text-black">
+  <!-- Texte principal en noir -->
 
-    <!-- Champ Départ -->
-    <div class="search-field">
-      <i class="fa fa-circle-dot"></i>
-      <input type="text" placeholder="Départ" [(ngModel)]="departure" />
-    </div>
-
-    <!-- Champ Destination -->
-    <div class="search-field">
-      <i class="fa fa-circle-dot"></i>
-      <input type="text" placeholder="Destination" [(ngModel)]="destination" />
-    </div>
-
-    <!-- Champ Date -->
-    <div class="search-field">
-      <i class="fa fa-calendar"></i>
-      <input type="date" [min]="todayDate" [(ngModel)]="travelDate" />
-    </div>
-
-    <!-- Passager (inchangé) -->
-    <div class="passenger-container">
-      <div class="passenger-display" (click)="togglePassengerDropdown()">
-        <i class="fas fa-user"></i> {{ passengerCount }} passager{{
-          passengerCount > 1 ? "s" : ""
-        }}
-      </div>
-
-      <div class="passenger-dropdown" *ngIf="showPassengerDropdown">
-        <span class="label">Passager</span>
-        <div class="controls">
-          <button (click)="decrementPassenger()">−</button>
-          <span>{{ passengerCount }}</span>
-          <button (click)="incrementPassenger()">+</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bouton Rechercher -->
-    <button class="search-btn" (click)="onSearch()">Rechercher</button>
-  </section>
-
-  <section class="features">
-    <div class="feature">
-      <i class="fas fa-euro-sign"></i>
-      <h3>Vos trajets préférés à petits prix</h3>
-      <p>
-        Où que vous alliez, en bus ou en covoiturage, trouvez le trajet idéal
-        parmi notre large choix de destinations à petits prix.
-      </p>
-    </div>
-    <div class="feature">
-      <i class="fas fa-leaf"></i>
-      <h3>Voyagez en toute confiance</h3>
-      <p>
-        Nous prenons le temps qu’il faut pour connaître nos membres et nos
-        compagnies de bus partenaires. Nous vérifions les avis, les profils et
-        les pièces d’identité. Vous savez donc avec qui vous allez voyager pour
-        réserver en toute confiance sur notre plateforme sécurisée.
-      </p>
-    </div>
-    <div class="feature">
-      <i class="fas fa-users"></i>
-      <h3>Recherchez, cliquez et réservez !</h3>
-      <p>
-        Réserver un trajet devient encore plus simple ! Facile d'utilisation et
-        dotée de technologies avancées, notre appli vous permet de réserver un
-        trajet à proximité en un rien de temps.
-      </p>
-    </div>
-  </section>
-  <section class="bg-teal-900 py-10 px-4 md:px-8">
-    <div class="container mx-auto max-w-6xl">
-      <h2 class="text-white text-2xl md:text-3xl font-bold mb-8">
-        Le top des trajets en covoiturage
-      </h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <a
-          *ngFor="let route of popularRoutes"
-          [routerLink]="route.link"
-          class="bg-white rounded-lg p-5 flex items-center justify-between hover:shadow-lg transition-shadow"
-        >
-          <div class="flex items-center">
-            <span class="text-teal-900 font-medium">{{ route.from }}</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 mx-2 text-teal-900"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M14 5l7 7m0 0l-7 7m7-7H3"
-              />
-            </svg>
-            <span class="text-teal-900 font-medium">{{ route.to }}</span>
-          </div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 text-teal-900"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+  <!-- Hero Section with Search -->
+  <div class="hero-gradient text-white py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <div class="animate-fade-in-up">
+          <h1
+            class="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </a>
-      </div>
+            <span class="block">Voyagez malin,</span>
+            <span class="block text-blue-100">voyagez ensemble</span>
+          </h1>
+          <p
+            class="mt-5 max-w-md mx-auto text-lg text-blue-100 sm:text-xl md:mt-6 md:text-2xl md:max-w-3xl"
+          >
+            Économisez jusqu'à 75% sur vos trajets en covoiturage
+          </p>
+        </div>
 
-      <div class="text-right mt-6">
-        <a
-          routerLink="/routes"
-          class="text-cyan-400 hover:text-cyan-300 font-medium"
-        >
-          En voir plus
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="testimonials">
-    <h2>Avis des conducteurs</h2>
-    <div class="testimonial-wrapper">
-      <button class="nav-arrow left" (click)="prevSlide()">&#10094;</button>
-
-      <div class="testimonial-slider" #testimonialSlider>
-        <div *ngFor="let avis of avisConducteurs" class="testimonial">
-          <p>« {{ avis.message }} »</p>
-          <div class="user-info">
-            <span>{{ avis.nom }} - {{ avis.ville }}</span>
+        <!-- Floating car icon -->
+        <div class="mt-10 flex justify-center animate-float">
+          <div class="bg-white/20 p-6 rounded-full backdrop-blur-sm">
+            <i class="fas fa-car-side text-4xl text-white"></i>
           </div>
         </div>
-      </div>
 
-      <button class="nav-arrow right" (click)="nextSlide()">&#10095;</button>
-    </div>
-  </section>
-
-  <section class="contact-area" id="contact">
-    <div class="container-contact">
-      <div class="map-form-wrapper">
-        <!-- Google Map -->
-        <div class="map-box">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12779.594247951557!2d10.1879613!3d36.8663286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13029efae01429db%3A0x6230cbcc6071a0e7!2sAriana!5e0!3m2!1sfr!2stn!4v1713277202303!5m2!1sfr!2stn"
-            width="100%"
-            height="100%"
-            frameborder="0"
-            style="border: 0"
-            allowfullscreen=""
-            loading="lazy"
-          >
-          </iframe>
-        </div>
-
-        <!-- Formulaire -->
-        <div class="form-box">
-          <h2>Contactez nos agents</h2>
+        <!-- Search Form -->
+        <div
+          class="mt-12 max-w-3xl mx-auto bg-white rounded-xl shadow-2xl p-8 animate-fade-in-up delay-100"
+        >
           <form>
-            <input type="text" placeholder="Votre Nom..." required />
-            <input type="email" placeholder="Votre e-mail..." required />
-            <input type="text" placeholder="Sujet..." required />
-            <textarea
-              rows="4"
-              placeholder="Votre Message..."
-              required
-            ></textarea>
-            <button type="submit" class="send-btn">Envoyer un message</button>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  for="departure"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >Départ</label
+                >
+                <div class="relative rounded-lg shadow-sm">
+                  <div
+                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                  >
+                    <i class="fas fa-map-marker-alt text-gray-400"></i>
+                  </div>
+                  <input
+                    type="text"
+                    id="departure"
+                    class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-black"
+                    placeholder="Ville de départ"
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  for="destination"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >Destination</label
+                >
+                <div class="relative rounded-lg shadow-sm">
+                  <div
+                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                  >
+                    <i class="fas fa-map-marker-alt text-gray-400"></i>
+                  </div>
+                  <input
+                    type="text"
+                    id="destination"
+                    class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-black"
+                    placeholder="Ville d'arrivée"
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  for="date"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >Date</label
+                >
+                <div class="relative rounded-lg shadow-sm">
+                  <div
+                    class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                  >
+                    <i class="fas fa-calendar-alt text-gray-400"></i>
+                  </div>
+                  <input
+                    type="date"
+                    id="date"
+                    class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-black"
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  for="passengers"
+                  class="block text-sm font-medium text-gray-700 mb-2"
+                  >Passagers</label
+                >
+                <div class="flex items-center">
+                  <button
+                    type="button"
+                    id="decrement"
+                    class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded-l-lg transition"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    id="passengers"
+                    value="1"
+                    min="1"
+                    max="8"
+                    class="w-16 text-center border-t border-b border-gray-300 py-2 px-2 focus:outline-none text-black"
+                  />
+                  <button
+                    type="button"
+                    id="increment"
+                    class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded-r-lg transition"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="mt-8">
+              <button
+                type="submit"
+                class="w-full btn-primary text-white font-bold py-4 px-6 rounded-lg flex items-center justify-center"
+              >
+                <i class="fas fa-search mr-3"></i> Trouver un trajet
+              </button>
+            </div>
           </form>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- Coordonnées -->
-      <div class="contact-details">
-        <div class="contact-item">
-          <i class="fa fa-phone"></i>
-          <div>
-            <h4>+216 22 222 222</h4>
-            <p>Numéro de téléphone</p>
+  <!-- Nos Services Section -->
+  <div class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center animate-fade-in-up">
+        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          Nos Services
+        </h2>
+        <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+          Découvrez pourquoi nous sommes le leader du covoiturage en France
+        </p>
+      </div>
+
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Service 1 -->
+        <div
+          class="bg-white p-8 rounded-xl shadow-md card-hover animate-fade-in-up delay-100 text-center"
+        >
+          <div
+            class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-blue-50 mb-6"
+          >
+            <i class="fas fa-shield-alt text-3xl service-icon"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">
+            Sécurité garantie
+          </h3>
+          <p class="text-gray-600">
+            Tous nos conducteurs sont vérifiés et notés pour garantir votre
+            sécurité à chaque trajet.
+          </p>
+        </div>
+
+        <!-- Service 2 -->
+        <div
+          class="bg-white p-8 rounded-xl shadow-md card-hover animate-fade-in-up delay-200 text-center"
+        >
+          <div
+            class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-50 mb-6"
+          >
+            <i class="fas fa-leaf text-3xl service-icon"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Écologique</h3>
+          <p class="text-gray-600">
+            Réduisez votre empreinte carbone en partageant vos trajets avec
+            d'autres voyageurs.
+          </p>
+        </div>
+
+        <!-- Service 3 -->
+        <div
+          class="bg-white p-8 rounded-xl shadow-md card-hover animate-fade-in-up delay-300 text-center"
+        >
+          <div
+            class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-purple-50 mb-6"
+          >
+            <i class="fas fa-wallet text-3xl service-icon"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Économique</h3>
+          <p class="text-gray-600">
+            Jusqu'à 75% d'économies par rapport aux autres modes de transport.
+          </p>
+        </div>
+
+        <!-- Service 4 -->
+        <div
+          class="bg-white p-8 rounded-xl shadow-md card-hover animate-fade-in-up delay-400 text-center"
+        >
+          <div
+            class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-yellow-50 mb-6"
+          >
+            <i class="fas fa-headset text-3xl service-icon"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Support 24/7</h3>
+          <p class="text-gray-600">
+            Notre équipe est disponible 24h/24 et 7j/7 pour répondre à vos
+            questions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Routes Section -->
+  <div class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center animate-fade-in-up delay-200">
+        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          Trajets populaires
+        </h2>
+        <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+          Les destinations préférées de notre communauté
+        </p>
+      </div>
+
+      <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Route 1 -->
+        <div
+          class="bg-white rounded-xl shadow-lg overflow-hidden card-hover animate-fade-in-up delay-100"
+        >
+          <div
+            class="h-56 bg-cover bg-center relative"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');
+            "
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+            ></div>
+            <div class="absolute bottom-4 left-4">
+              <span
+                class="bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full"
+                >Populaire</span
+              >
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center">
+              <div class="flex-shrink-0 bg-blue-100 p-3 rounded-lg">
+                <i class="fas fa-car text-blue-600 text-xl"></i>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-xl font-semibold text-gray-900">
+                  Paris → Lyon
+                </h3>
+                <p class="text-blue-600 font-medium">À partir de 15€</p>
+              </div>
+            </div>
+            <div class="mt-5 flex items-center text-gray-500">
+              <div class="flex items-center mr-4">
+                <i class="fas fa-clock mr-2"></i>
+                <span>4h30</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-road mr-2"></i>
+                <span>465 km</span>
+              </div>
+            </div>
+            <div class="mt-6">
+              <button
+                class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-lg transition"
+              >
+                Voir les trajets
+              </button>
+            </div>
           </div>
         </div>
-        <div class="contact-item">
-          <i class="fa fa-envelope"></i>
-          <div>
-            <p>Email : TAKTAK&#64;gmail.com</p>
-            <p>Courriel professionnel</p>
+
+        <!-- Route 2 -->
+        <div
+          class="bg-white rounded-xl shadow-lg overflow-hidden card-hover animate-fade-in-up delay-200"
+        >
+          <div
+            class="h-56 bg-cover bg-center relative"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');
+            "
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+            ></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center">
+              <div class="flex-shrink-0 bg-green-100 p-3 rounded-lg">
+                <i class="fas fa-car text-green-600 text-xl"></i>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-xl font-semibold text-gray-900">
+                  Bordeaux → Toulouse
+                </h3>
+                <p class="text-blue-600 font-medium">À partir de 12€</p>
+              </div>
+            </div>
+            <div class="mt-5 flex items-center text-gray-500">
+              <div class="flex items-center mr-4">
+                <i class="fas fa-clock mr-2"></i>
+                <span>2h30</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-road mr-2"></i>
+                <span>245 km</span>
+              </div>
+            </div>
+            <div class="mt-6">
+              <button
+                class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-lg transition"
+              >
+                Voir les trajets
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Route 3 -->
+        <div
+          class="bg-white rounded-xl shadow-lg overflow-hidden card-hover animate-fade-in-up delay-300"
+        >
+          <div
+            class="h-56 bg-cover bg-center relative"
+            style="
+              background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');
+            "
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+            ></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center">
+              <div class="flex-shrink-0 bg-purple-100 p-3 rounded-lg">
+                <i class="fas fa-car text-purple-600 text-xl"></i>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-xl font-semibold text-gray-900">
+                  Lille → Marseille
+                </h3>
+                <p class="text-blue-600 font-medium">À partir de 35€</p>
+              </div>
+            </div>
+            <div class="mt-5 flex items-center text-gray-500">
+              <div class="flex items-center mr-4">
+                <i class="fas fa-clock mr-2"></i>
+                <span>8h15</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-road mr-2"></i>
+                <span>1,045 km</span>
+              </div>
+            </div>
+            <div class="mt-6">
+              <button
+                class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-lg transition"
+              >
+                Voir les trajets
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+
+  <!-- Avis des Passagers Section -->
+  <div class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          Avis des Passagers
+        </h2>
+        <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+          Ce que nos utilisateurs disent de leur expérience
+        </p>
+      </div>
+
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Avis 1 -->
+        <div class="testimonial-card p-8 animate-fade-in-up delay-100">
+          <div class="flex items-center mb-6">
+            <img
+              src="https://randomuser.me/api/portraits/women/43.jpg"
+              alt="Marie D."
+              class="w-12 h-12 rounded-full object-cover"
+            />
+            <div class="ml-4">
+              <h4 class="font-bold text-gray-900">Marie D.</h4>
+              <div class="flex mt-1 rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">
+            "J'utilise EcoRide depuis 2 ans pour mes trajets Paris-Lyon.
+            Toujours des conducteurs sympas et ponctuels. J'ai économisé plus de
+            1000€ !"
+          </p>
+          <div class="mt-4 text-sm text-gray-500">
+            <i class="fas fa-calendar-alt mr-2"></i> 15 trajets effectués
+          </div>
+        </div>
+
+        <!-- Avis 2 -->
+        <div class="testimonial-card p-8 animate-fade-in-up delay-200">
+          <div class="flex items-center mb-6">
+            <img
+              src="https://randomuser.me/api/portraits/men/32.jpg"
+              alt="Pierre L."
+              class="w-12 h-12 rounded-full object-cover"
+            />
+            <div class="ml-4">
+              <h4 class="font-bold text-gray-900">Pierre L.</h4>
+              <div class="flex mt-1 rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">
+            "En tant que conducteur, l'application est très intuitive. J'ai
+            rencontré des gens intéressants et ça m'aide à payer mon crédit
+            auto."
+          </p>
+          <div class="mt-4 text-sm text-gray-500">
+            <i class="fas fa-car mr-2"></i> Conducteur depuis 1 an
+          </div>
+        </div>
+
+        <!-- Avis 3 -->
+        <div class="testimonial-card p-8 animate-fade-in-up delay-300">
+          <div class="flex items-center mb-6">
+            <img
+              src="https://randomuser.me/api/portraits/women/65.jpg"
+              alt="Sophie T."
+              class="w-12 h-12 rounded-full object-cover"
+            />
+            <div class="ml-4">
+              <h4 class="font-bold text-gray-900">Sophie T.</h4>
+              <div class="flex mt-1 rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">
+            "Le système de notation est très rassurant. J'ai toujours trouvé des
+            trajets correspondant à mes horaires. Service client réactif en cas
+            de problème."
+          </p>
+          <div class="mt-4 text-sm text-gray-500">
+            <i class="fas fa-thumbs-up mr-2"></i> 97% de satisfaction
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <button
+          class="bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-bold py-3 px-8 rounded-lg transition duration-300"
+        >
+          Voir tous les avis
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 animate-fade-in-up">
+        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          Besoin d'aide ?
+        </h2>
+        <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-600">
+          Notre équipe est là pour répondre à vos questions
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Contact Info -->
+        <div class="contact-card p-10 rounded-2xl animate-fade-in-up delay-100">
+          <div class="mb-10">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">
+              Contactez-nous
+            </h3>
+            <p class="text-gray-600">
+              Envoyez-nous un message ou contactez-nous directement par email ou
+              téléphone.
+            </p>
+          </div>
+
+          <div class="space-y-8">
+            <div class="flex items-start">
+              <div class="flex-shrink-0 bg-blue-100 p-4 rounded-xl">
+                <i class="fas fa-envelope text-blue-600 text-2xl"></i>
+              </div>
+              <div class="ml-5">
+                <h4 class="text-lg font-semibold text-gray-800">Email</h4>
+                <p class="mt-2 text-gray-600">contactecoride.fr</p>
+                <button
+                  class="mt-3 text-blue-600 hover:text-blue-800 transition"
+                >
+                  Envoyer un email
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="flex-shrink-0 bg-green-100 p-4 rounded-xl">
+                <i class="fas fa-phone-alt text-green-600 text-2xl"></i>
+              </div>
+              <div class="ml-5">
+                <h4 class="text-lg font-semibold text-gray-800">Téléphone</h4>
+                <p class="mt-2 text-gray-600">+33 1 23 45 67 89</p>
+                <p class="mt-1 text-sm text-gray-500">Lun-Ven, 9h-18h</p>
+                <button
+                  class="mt-3 text-blue-600 hover:text-blue-800 transition"
+                >
+                  Appeler maintenant
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div class="flex-shrink-0 bg-purple-100 p-4 rounded-xl">
+                <i class="fas fa-map-marker-alt text-purple-600 text-2xl"></i>
+              </div>
+              <div class="ml-5">
+                <h4 class="text-lg font-semibold text-gray-800">Bureau</h4>
+                <p class="mt-2 text-gray-600">15 Rue du Covoiturage</p>
+                <p class="text-gray-600">75015 Paris, France</p>
+                <button
+                  class="mt-3 text-blue-600 hover:text-blue-800 transition"
+                >
+                  Voir sur la carte
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-12">
+            <h4 class="text-lg font-semibold text-gray-800 mb-5">
+              Suivez-nous
+            </h4>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="bg-blue-100 text-blue-600 p-4 rounded-xl hover:bg-blue-200 transition"
+              >
+                <i class="fab fa-facebook-f text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="bg-blue-100 text-blue-400 p-4 rounded-xl hover:bg-blue-200 transition"
+              >
+                <i class="fab fa-twitter text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="bg-pink-100 text-pink-600 p-4 rounded-xl hover:bg-pink-200 transition"
+              >
+                <i class="fab fa-instagram text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="bg-blue-100 text-blue-700 p-4 rounded-xl hover:bg-blue-200 transition"
+              >
+                <i class="fab fa-linkedin-in text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-card p-10 rounded-2xl animate-fade-in-up delay-200">
+          <h3 class="text-2xl font-bold text-gray-800 mb-8">
+            Envoyez-nous un message
+          </h3>
+
+          <form id="contactForm" class="space-y-6">
+            <div>
+              <label
+                for="name"
+                class="block text-sm font-medium text-gray-700 mb-2"
+                >Nom complet</label
+              >
+              <input
+                type="text"
+                id="name"
+                class="form-input w-full px-4 py-3 border-0 border-b-2 bg-gray-50 focus:bg-white focus:ring-0 rounded-lg text-black"
+                required
+              />
+            </div>
+
+            <div>
+              <label
+                for="email"
+                class="block text-sm font-medium text-gray-700 mb-2"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                class="form-input w-full px-4 py-3 border-0 border-b-2 bg-gray-50 focus:bg-white focus:ring-0 rounded-lg text-black"
+                required
+              />
+            </div>
+
+            <div>
+              <label
+                for="subject"
+                class="block text-sm font-medium text-gray-700 mb-2"
+                >Sujet</label
+              >
+              <select
+                id="subject"
+                class="form-input w-full px-4 py-3 border-0 border-b-2 bg-gray-50 focus:bg-white focus:ring-0 rounded-lg text-black"
+                required
+              >
+                <option value="" disabled selected>
+                  Sélectionnez un sujet
+                </option>
+                <option>Question générale</option>
+                <option>Problème technique</option>
+                <option>Demande de partenariat</option>
+                <option>Autre</option>
+              </select>
+            </div>
+
+            <div>
+              <label
+                for="message"
+                class="block text-sm font-medium text-gray-700 mb-2"
+                >Message</label
+              >
+              <textarea
+                id="message"
+                rows="5"
+                class="form-input w-full px-4 py-3 border-0 border-b-2 bg-gray-50 focus:bg-white focus:ring-0 rounded-lg text-black"
+                required
+              ></textarea>
+            </div>
+
+            <div class="pt-4">
+              <button
+                type="submit"
+                class="w-full btn-primary text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center"
+              >
+                <i class="fas fa-paper-plane mr-3"></i> Envoyer le message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

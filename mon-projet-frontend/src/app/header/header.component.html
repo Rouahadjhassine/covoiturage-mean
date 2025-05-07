@@ -1,31 +1,132 @@
-<!-- shared/header.component.html -->
-<div class="header">
-  <div class="logo" [routerLink]="['/']">TAKTAK</div>
-  <nav class="flex items-center gap-5 text-xl font-sans">
-    <a routerLink="/recherche" class="nav-link">
-      <i class="fa fa-search"></i> Rechercher
-    </a>
-    <a routerLink="/carpooling" class="nav-link">
-      <i class="fa fa-plus-circle"></i> Publier un trajet
-    </a>
+<!-- Header Section -->
+<header class="hero-gradient shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="flex-shrink-0 flex items-center">
+        <a href="#" class="flex items-center">
+          <i class="fas fa-car-side text-2xl mr-2"></i>
+          <span class="text-xl font-bold">TAKTAK</span>
+        </a>
+      </div>
 
-    <div class="dropdown">
-      <button class="dropdown-toggle">
-        <i class="fa fa-user-circle"></i>
-        <i class="fa fa-chevron-down"></i>
-      </button>
-      <div class="dropdown-menu">
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex space-x-8">
         <a
-          [routerLink]="['/login']"
-          class="flex items-center justify-center gap-1.5 text-lg font-bold font-sans"
-          ><i class="fa-solid fa-arrow-right-to-bracket"></i> Connexion</a
+          href="#"
+          class="text-white hover:text-blue-100 px-3 py-2 text-sm font-medium"
+          >Accueil</a
         >
         <a
-          routerLink="/register"
-          class="flex items-center justify-center gap-1.5 text-lg font-bold font-sans"
-          ><i class="fa-solid fa-user-plus"></i>Inscription</a
+          href="#"
+          class="text-white hover:text-blue-100 px-3 py-2 text-sm font-medium"
+          >Trajets</a
         >
+        <a
+          href="#"
+          class="text-white hover:text-blue-100 px-3 py-2 text-sm font-medium"
+          >Destinations</a
+        >
+        <a
+          href="#"
+          class="text-white hover:text-blue-100 px-3 py-2 text-sm font-medium"
+          >À propos</a
+        >
+      </nav>
+
+      <!-- Right Side Buttons -->
+      <div class="flex items-center space-x-4">
+        <!-- Publish Trip Button -->
+        <button
+          class="btn-publish text-white font-medium px-4 py-2 rounded-lg flex items-center"
+        >
+          <i class="fas fa-plus mr-2"></i> Publier un trajet
+        </button>
+
+        <!-- User Profile Dropdown -->
+        <div class="relative dropdown">
+          <button class="flex items-center space-x-2 focus:outline-none">
+            <div
+              class="w-8 h-8 rounded-full bg-white flex items-center justify-center"
+            >
+              <i class="fas fa-user text-blue-500"></i>
+            </div>
+            <span class="text-white hidden md:inline">Mon compte</span>
+            <i class="fas fa-chevron-down text-xs"></i>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div
+            class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden z-50"
+          >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            >
+              <i class="fas fa-user mr-2"></i> Profil
+            </a>
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            >
+              <i class="fas fa-history mr-2"></i> Historique
+            </a>
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            >
+              <i class="fas fa-cog mr-2"></i> Paramètres
+            </a>
+            <div class="border-t border-gray-200"></div>
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-red-500 hover:bg-gray-100"
+            >
+              <i class="fas fa-sign-out-alt mr-2"></i> Déconnexion
+            </a>
+          </div>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button
+          class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-blue-700 focus:outline-none"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
     </div>
-  </nav>
-</div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="md:hidden hidden" id="mobile-menu">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-blue-700">
+      <a
+        href="#"
+        class="text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Accueil</a
+      >
+      <a
+        href="#"
+        class="text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Trajets</a
+      >
+      <a
+        href="#"
+        class="text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Destinations</a
+      >
+      <a
+        href="#"
+        class="text-white block px-3 py-2 rounded-md text-base font-medium"
+        >À propos</a
+      >
+      <div class="pt-4 border-t border-blue-800">
+        <button
+          class="w-full btn-publish text-white font-medium px-4 py-2 rounded-lg flex items-center justify-center"
+        >
+          <i class="fas fa-plus mr-2"></i> Publier un trajet
+        </button>
+      </div>
+    </div>
+  </div>
+</header>

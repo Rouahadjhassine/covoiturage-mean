@@ -1,422 +1,110 @@
-.home-container {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-  background-color: #f9f9f9;
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
-/* Hero Section */
-.hero-section {
-  display: flex;
-  justify-content: space-between;
-  padding: 130px 90px;
-  flex-wrap: wrap;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.hero-text {
-  max-width: 100%;
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }
 
-.hero-text h1 {
-  font-size: 423px;
-  color: #2c3e50;
-  margin-bottom: 20px;
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
-.hero-text p {
-  font-size: 18px;
-  margin-bottom: 30px;
-  color: #555;
+.hero-gradient {
+  background: linear-gradient(135deg, #2563eb 0%, #059669 100%);
 }
 
-.actions .btn-primary,
-.actions .btn-secondary {
-  padding: 12px 20px;
-  border: none;
-  margin-right: 15px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.actions .btn-primary {
-  background-color: #007bff;
-  color: white;
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.15);
 }
 
-.actions .btn-secondary {
-  background-color: white;
-  color: #007bff;
-  border: 2px solid #007bff;
+.contact-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
 }
 
-/* Features */
-.features {
-  display: flex;
-  justify-content: space-around;
-  padding: 50px 20px;
-  background-color: #fff;
-  text-align: center;
+.form-input {
+  transition: all 0.3s;
+  border-bottom: 2px solid #e2e8f0;
+  color: #000000; /* Texte en noir */
 }
 
-.feature {
-  max-width: 300px;
+.form-input:focus {
+  border-bottom-color: #3b82f6;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1),
+    0 2px 4px -1px rgba(59, 130, 246, 0.06);
 }
 
-.feature i {
-  font-size: 36px;
-  color: #007bff;
-  margin-bottom: 15px;
+.btn-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+  transition: all 0.3s;
 }
 
-.feature h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #2c3e50;
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
 }
 
-.feature p {
-  font-size: 16px;
-  color: #666;
+.delay-100 {
+  animation-delay: 0.1s;
 }
 
-/* Testimonials */
-.testimonials {
-  padding: 60px 20px;
-  background-color: #f4f4f4;
-  text-align: center;
+.delay-200 {
+  animation-delay: 0.2s;
 }
 
-.testimonials h2 {
-  font-size: 30px;
-  margin-bottom: 40px;
-  color: #2c3e50;
+.delay-300 {
+  animation-delay: 0.3s;
 }
 
-.testimonial-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* Style pour les étoiles de notation */
+.rating-stars {
+  color: #fbbf24;
 }
 
-.testimonial-slider {
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  gap: 20px;
-  padding: 10px;
-  max-width: 1000px;
-}
-
-.testimonial {
-  flex: 0 0 300px;
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: left;
-}
-
-.testimonial p {
-  font-style: italic;
-  color: #444;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.user-info img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.user-info span {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-.nav-arrow {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  font-size: 24px;
-  padding: 10px 15px;
-  border-radius: 50%;
-  cursor: pointer;
-  margin: 0 10px;
-  transition: background-color 0.3s ease;
-}
-
-.nav-arrow:hover {
-  background-color: #2980b9;
-}
-
-/* Contact Area */
-.contact-area {
-  position: relative;
-  background-color: #fff;
-  padding: 60px 20px;
-  text-align: center;
-  overflow: hidden;
-}
-
-.contact-area::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("https://www.cc-paysdepontchateau.fr/medias/2022/04/Bannie%CC%80re-covoiturage.png");
-  background-size: cover;
-  background-position: center;
-  opacity: 0.5;
-  z-index: 1;
-}
-
-.container-contact {
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: auto;
-}
-
-.map-form-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
-}
-
-.map-box {
-  flex: 1 1 50%;
-  min-height: 350px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.form-box {
-  flex: 1 1 40%;
-  background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  text-align: left;
-}
-
-.form-box h2 {
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-}
-
-.form-box form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.form-box input,
-.form-box textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.send-btn {
-  background-color: #000;
-  color: #fff;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.send-btn:hover {
-  background-color: #ff6600;
-}
-
-.contact-details {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 40px;
-  flex-wrap: wrap;
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background: #f5f5f5;
-  padding: 20px 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-.contact-item i {
-  font-size: 2rem;
-  color: #ff6600;
-}
-
-/* Hero Section (Small adjustments) */
-.hero-section {
-  padding: 4rem;
-  background: #f5faff;
-}
-
-.hero-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.hero-text {
-  max-width: 50%;
-}
-
-.hero-text h1 {
-  font-size: 2rem;
-  color: #333;
-  font-weight: bold;
-}
-
-.hero-text p {
-  font-size: 1.3rem;
-  color: #666;
-  margin-top: 1.2rem;
-}
-
-.hero-image img {
-  width: 800px;
-  max-width: 300%;
-}
-
-.search-bar {
+/* Style pour les avis */
+.testimonial-card {
   background: white;
-  padding: 1rem 2rem;
-  border-radius: 2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin-top: 2rem;
-  border: 1px solid black;
-  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
 }
 
-.search-field {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #f9f9f9;
-  padding: 0.7rem 1rem;
-  border-radius: 1rem;
-  font-weight: bold;
-  color: #5a6a73;
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
-.search-field input {
-  border: none;
-  background: transparent;
-  outline: none;
-  font-weight: bold;
-  color: #333;
-}
-
-.passenger-field {
-  position: relative;
-  cursor: pointer;
-}
-
-.counter-controls {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem;
-  display: none;
-  flex-direction: column;
-  z-index: 10;
-}
-
-.passenger-field:hover .counter-controls {
-  display: flex;
-}
-
-.search-btn {
-  background: #00a2df;
-  color: white;
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 2rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.search-btn:hover {
-  background: #008cc2;
-}
-
-.passenger-container {
-  position: relative;
-  font-weight: bold;
-  color: #0b3a4f;
-}
-
-.passenger-display {
-  background-color: #e8e8e8;
-  padding: 10px 16px;
-  border-radius: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.passenger-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: white;
-  border-radius: 1.5rem;
-  padding: 1rem 1.5rem;
-  margin-top: 0.5rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  z-index: 100;
-  width: 230px;
-}
-
-.passenger-dropdown .label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.controls button {
-  border: none;
-  background: none;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #00a2df;
-  cursor: pointer;
-}
-
-.controls span {
-  font-size: 1.2rem;
+/* Style pour les icônes de services */
+.service-icon {
+  background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
