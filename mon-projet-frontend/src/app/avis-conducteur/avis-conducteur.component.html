@@ -1,0 +1,421 @@
+
+<div class="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <div class="container mx-auto px-4 py-12">
+        <!-- Header -->
+        <header class="mb-12 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-fade-in" style="color: #043B47;">
+                <i class="fas fa-comments mr-3 animate-float" style="color: #00B2FF;"></i>
+                Gestion des avis
+            </h1>
+            <p class="text-xl max-w-2xl mx-auto" style="color: #4B5563;"> <!-- gray-600 -->
+                Consultez et gérez les retours de vos passagers sur vos trajets de covoiturage
+            </p>
+        </header>
+        
+
+     <!-- Dashboard -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+    <!-- Note moyenne -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center hover:shadow-xl transition duration-300">
+        <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+            <span class="text-3xl font-bold" style="color: #043B47;">4.7</span>
+        </div>
+        <h3 class="text-xl font-semibold mb-2" style="color: #043B47;">Note moyenne</h3>
+        <div class="flex mb-4">
+            <i class="fas fa-star text-xl" style="color: #FFC107;"></i>
+            <i class="fas fa-star text-xl" style="color: #FFC107;"></i>
+            <i class="fas fa-star text-xl" style="color: #FFC107;"></i>
+            <i class="fas fa-star text-xl" style="color: #FFC107;"></i>
+            <i class="fas fa-star-half-alt text-xl" style="color: #FFC107;"></i>
+        </div>
+        <p style="color: #4B5563;">Basé sur 42 avis</p>
+    </div>
+
+    <!-- Répartition des notes -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition duration-300">
+        <h3 class="text-xl font-semibold mb-6 text-center" style="color: #043B47;">Répartition des notes</h3>
+        <div class="space-y-4">
+            <!-- 5 étoiles -->
+            <div class="flex items-center">
+                <div class="flex w-24">
+                    <span class="mr-2" style="color: #4B5563;">5</span>
+                    <i class="fas fa-star" style="color: #FFC107;"></i>
+                </div>
+                <div class="flex-1 bg-gray-200 rounded-full h-2.5 mx-2">
+                    <div class="h-2.5 rounded-full progress-bar" style="width: 70%; background-color: #FFC107;"></div>
+                </div>
+                <span style="color: #4B5563;">29</span>
+            </div>
+            <!-- 4 étoiles -->
+            <div class="flex items-center">
+                <div class="flex w-24">
+                    <span class="mr-2" style="color: #4B5563;">4</span>
+                    <i class="fas fa-star" style="color: #FFC107;"></i>
+                </div>
+                <div class="flex-1 bg-gray-200 rounded-full h-2.5 mx-2">
+                    <div class="h-2.5 rounded-full progress-bar" style="width: 20%; background-color: #FFC107;"></div>
+                </div>
+                <span style="color: #4B5563;">8</span>
+            </div>
+            <!-- 3 étoiles -->
+            <div class="flex items-center">
+                <div class="flex w-24">
+                    <span class="mr-2" style="color: #4B5563;">3</span>
+                    <i class="fas fa-star" style="color: #FFC107;"></i>
+                </div>
+                <div class="flex-1 bg-gray-200 rounded-full h-2.5 mx-2">
+                    <div class="h-2.5 rounded-full progress-bar" style="width: 7%; background-color: #FFC107;"></div>
+                </div>
+                <span style="color: #4B5563;">3</span>
+            </div>
+            <!-- 2 étoiles -->
+            <div class="flex items-center">
+                <div class="flex w-24">
+                    <span class="mr-2" style="color: #4B5563;">2</span>
+                    <i class="fas fa-star" style="color: #FFC107;"></i>
+                </div>
+                <div class="flex-1 bg-gray-200 rounded-full h-2.5 mx-2">
+                    <div class="h-2.5 rounded-full progress-bar" style="width: 2%; background-color: #FFC107;"></div>
+                </div>
+                <span style="color: #4B5563;">1</span>
+            </div>
+            <!-- 1 étoile -->
+            <div class="flex items-center">
+                <div class="flex w-24">
+                    <span class="mr-2" style="color: #4B5563;">1</span>
+                    <i class="fas fa-star" style="color: #FFC107;"></i>
+                </div>
+                <div class="flex-1 bg-gray-200 rounded-full h-2.5 mx-2">
+                    <div class="h-2.5 rounded-full progress-bar" style="width: 1%; background-color: #FFC107;"></div>
+                </div>
+                <span style="color: #4B5563;">1</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistiques -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition duration-300">
+        <h3 class="text-xl font-semibold mb-6 text-center" style="color: #043B47;">Vos statistiques</h3>
+        <div class="space-y-5">
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-car" style="color: #00B2FF;"></i>
+                </div>
+                <div>
+                    <p style="color: #4B5563;">Trajets effectués</p>
+                    <p class="text-xl font-bold" style="color: #043B47;">56</p>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-users" style="color: #00B2FF;"></i>
+                </div>
+                <div>
+                    <p style="color: #4B5563;">Passagers transportés</p>
+                    <p class="text-xl font-bold" style="color: #043B47;">142</p>
+                </div>
+            </div>
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-comment-dots" style="color: #00B2FF;"></i>
+                </div>
+                <div>
+                    <p style="color: #4B5563;">Avis reçus</p>
+                    <p class="text-xl font-bold" style="color: #043B47;">42</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <!-- Filtres -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <h2 class="text-2xl font-bold text-primary">Tous les avis</h2>
+                
+                <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                    <!-- Filtre par note -->
+                    <div class="relative">
+                        <button class="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition cursor-pointer" id="ratingFilterButton">
+                            <span id="currentRatingFilter">Toutes les notes</span>
+                            <i class="fas fa-chevron-down text-xs text-gray-500"></i>
+                        </button>
+                        <div class="absolute z-10 bg-white shadow-lg rounded-lg py-2 top-12 right-0 w-48 hidden" id="ratingFilterDropdown">
+                            <div class="filter-option px-4 py-2 hover:bg-blue-50 cursor-pointer flex items-center justify-between" data-rating="all">
+                                <span>Toutes les notes</span>
+                                <i class="fas fa-check text-secondary"></i>
+                            </div>
+                            <div class="filter-option px-4 py-2 hover:bg-blue-50 cursor-pointer flex items-center justify-between" data-rating="5">
+                                <span>5 étoiles</span>
+                                <i class="fas fa-check text-secondary hidden"></i>
+                            </div>
+                            <div class="filter-option px-4 py-2 hover:bg-blue-50 cursor-pointer flex items-center justify-between" data-rating="4">
+                                <span>4 étoiles</span>
+                                <i class="fas fa-check text-secondary hidden"></i>
+                            </div>
+                            <div class="filter-option px-4 py-2 hover:bg-blue-50 cursor-pointer flex items-center justify-between" data-rating="3">
+                                <span>3 étoiles</span>
+                                <i class="fas fa-check text-secondary hidden"></i>
+                            </div>
+                            <div class="filter-option px-4 py-2 hover:bg-blue-50 cursor-pointer flex items-center justify-between" data-rating="2">
+                                <span>2 étoiles</span>
+                                <i class="fas fa-check text-secondary hidden"></i>
+                            </div>
+                            <div class="filter-option px-4 py-2 hover:bg-blue-50 cursor-pointer flex items-center justify-between" data-rating="1">
+                                <span>1 étoile</span>
+                                <i class="fas fa-check text-secondary hidden"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Filtre par date -->
+                    <div class="relative">
+                        <button class="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition cursor-pointer" id="dateFilterButton">
+                            <span id="currentDateFilter">Toutes dates</span>
+                            <i class="fas fa-chevron-down text-xs text-gray-500"></i>
+                        </button>
+                        <div class="absolute z-10 bg-white shadow-lg rounded-lg py-2 top-12 right-0 w-48 hidden" id="dateFilterDropdown">
+                            <div class="filter-option px-4 py-2 hover:bg-blue-50 cursor-pointer flex items-center justify-between" data-date="all">
+                                <span>Toutes dates</span>
+                                <i class="fas fa-check text-secondary"></i>
+                            </div>
+                            <div class="filter-option px-4 py-2 hover:bg-blue-50 cursor-pointer flex items-center justify-between" data-date="week">
+                                <span>Cette semaine</span>
+                                <i class="fas fa-check text-secondary hidden"></i>
+                            </div>
+                            <div class="filter-option px-4 py-2 hover:bg-blue-50 cursor-pointer flex items-center justify-between" data-date="month">
+                                <span>Ce mois</span>
+                                <i class="fas fa-check text-secondary hidden"></i>
+                            </div>
+                            <div class="filter-option px-4 py-2 hover:bg-blue-50 cursor-pointer flex items-center justify-between" data-date="year">
+                                <span>Cette année</span>
+                                <i class="fas fa-check text-secondary hidden"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Liste des avis -->
+        <div class="space-y-6" id="reviewsList">
+            <!-- Avis 1 -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 review-card animate-slide-up" data-rating="5" data-date="2023-06-15">
+                <div class="flex flex-col md:flex-row justify-between mb-4">
+                    <div class="flex items-center mb-4 md:mb-0">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-lg font-semibold text-primary">JD</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-primary">Jean Dupont</h3>
+                            <p class="text-sm text-gray-500">Paris → Lyon • 15 juin 2023</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="star-rating flex mr-4">
+                            <i class="fas fa-star text-rating star"></i>
+                            <i class="fas fa-star text-rating star"></i>
+                            <i class="fas fa-star text-rating star"></i>
+                            <i class="fas fa-star text-rating star"></i>
+                            <i class="fas fa-star text-rating star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">8:30 - 12:15</span>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <p class="text-gray-700">
+                        "Excellent conducteur, très ponctuel et voiture très confortable. La conversation était agréable et le trajet s'est déroulé sans aucun problème. Je recommande vivement !"
+                    </p>
+                </div>
+                
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="text-xs bg-green-100 text-green-800 px-3 py-1 rounded-full">Ponctualité</span>
+                    <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Confort</span>
+                    <span class="text-xs bg-purple-100 text-purple-800 px-3 py-1 rounded-full">Sécurité</span>
+                </div>
+                
+                <div class="pt-4 border-t border-gray-100 flex justify-end">
+                    <button class="text-secondary hover:text-primary font-medium flex items-center gap-2 reply-btn" data-review-id="1">
+                        <i class="far fa-comment-dots"></i>
+                        Répondre
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Avis 2 -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 review-card animate-slide-up" data-rating="4" data-date="2023-06-16">
+                <div class="flex flex-col md:flex-row justify-between mb-4">
+                    <div class="flex items-center mb-4 md:mb-0">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-lg font-semibold text-primary">SM</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-primary">Sophie Martin</h3>
+                            <p class="text-sm text-gray-500">Marseille → Nice • 16 juin 2023</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="star-rating flex mr-4">
+                            <i class="fas fa-star text-rating star"></i>
+                            <i class="fas fa-star text-rating star"></i>
+                            <i class="fas fa-star text-rating star"></i>
+                            <i class="fas fa-star text-rating star"></i>
+                            <i class="far fa-star text-rating star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">14:00 - 16:45</span>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <p class="text-gray-700">
+                        "Bon trajet globalement, mais la climatisation ne fonctionnait pas très bien et il faisait assez chaud dans la voiture. Sinon, conduite sûre et agréable."
+                    </p>
+                </div>
+                
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="text-xs bg-green-100 text-green-800 px-3 py-1 rounded-full">Conduite</span>
+                    <span class="text-xs bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">Climatisation</span>
+                </div>
+                
+                <div class="pt-4 border-t border-gray-100 flex justify-between items-center">
+                    <div class="flex items-center gap-2 text-sm text-gray-500">
+                        <i class="fas fa-reply"></i>
+                        <span>Vous avez répondu : "Désolé pour la climatisation, elle est maintenant réparée."</span>
+                    </div>
+                    <button class="text-gray-500 hover:text-primary font-medium flex items-center gap-2 edit-reply-btn" data-review-id="2">
+                        <i class="fas fa-pencil-alt"></i>
+                        Modifier
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Avis 3 -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 review-card animate-slide-up" data-rating="4.5" data-date="2023-06-17">
+                <div class="flex flex-col md:flex-row justify-between mb-4">
+                    <div class="flex items-center mb-4 md:mb-0">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-lg font-semibold text-primary">PL</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-primary">Pierre Lambert</h3>
+                            <p class="text-sm text-gray-500">Bordeaux → Toulouse • 17 juin 2023</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="star-rating flex mr-4">
+                            <i class="fas fa-star text-rating star"></i>
+                            <i class="fas fa-star text-rating star"></i>
+                            <i class="fas fa-star text-rating star"></i>
+                            <i class="fas fa-star text-rating star"></i>
+                            <i class="fas fa-star-half-alt text-rating star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">9:15 - 11:30</span>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <p class="text-gray-700">
+                        "Très bon conducteur, voiture propre et confortable. Petit bémol sur le trajet qui a été un peu plus long que prévu à cause des embouteillages, mais ce n'est pas de sa faute."
+                    </p>
+                </div>
+                
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="text-xs bg-green-100 text-green-800 px-3 py-1 rounded-full">Propreté</span>
+                    <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full">Confort</span>
+                    <span class="text-xs bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">Ponctualité</span>
+                </div>
+                
+                <div class="pt-4 border-t border-gray-100 flex justify-end">
+                    <button class="text-secondary hover:text-primary font-medium flex items-center gap-2 reply-btn" data-review-id="3">
+                        <i class="far fa-comment-dots"></i>
+                        Répondre
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Avis 4 -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 review-card animate-slide-up" data-rating="3" data-date="2023-06-18">
+                <div class="flex flex-col md:flex-row justify-between mb-4">
+                    <div class="flex items-center mb-4 md:mb-0">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-lg font-semibold text-primary">TB</span>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-primary">Thomas Bernard</h3>
+                            <p class="text-sm text-gray-500">Lille → Bruxelles • 18 juin 2023</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="star-rating flex mr-4">
+                            <i class="fas fa-star text-rating star"></i>
+                            <i class="fas fa-star text-rating star"></i>
+                            <i class="fas fa-star text-rating star"></i>
+                            <i class="far fa-star text-rating star"></i>
+                            <i class="far fa-star text-rating star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">7:45 - 9:30</span>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <p class="text-gray-700">
+                        "Trajet correct mais le conducteur parlait beaucoup au téléphone pendant la conduite, ce qui n'est pas très rassurant. Sinon, tout s'est bien passé."
+                    </p>
+                </div>
+                
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="text-xs bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">Sécurité</span>
+                    <span class="text-xs bg-green-100 text-green-800 px-3 py-1 rounded-full">Ponctualité</span>
+                </div>
+                
+                <div class="pt-4 border-t border-gray-100 flex justify-end">
+                    <button class="text-secondary hover:text-primary font-medium flex items-center gap-2 reply-btn" data-review-id="4">
+                        <i class="far fa-comment-dots"></i>
+                        Répondre
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="mt-8 flex justify-center">
+            <nav class="flex items-center gap-1">
+                <button class="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-500 hover:bg-blue-50 hover:text-primary transition pagination-btn" data-page="prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-full bg-secondary text-white font-medium pagination-btn active" data-page="1">1</button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-500 hover:bg-blue-50 hover:text-primary transition pagination-btn" data-page="2">2</button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-500 hover:bg-blue-50 hover:text-primary transition pagination-btn" data-page="3">3</button>
+                <span class="px-2">...</span>
+                <button class="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-500 hover:bg-blue-50 hover:text-primary transition pagination-btn" data-page="8">8</button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-500 hover:bg-blue-50 hover:text-primary transition pagination-btn" data-page="next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Modal de réponse -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden" id="replyModal">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-2xl">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-primary">Répondre à l'avis</h3>
+                <button class="text-gray-500 hover:text-primary" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mb-4">
+                <p class="text-gray-700" id="reviewContent"></p>
+            </div>
+            <textarea class="w-full border border-gray-300 rounded-lg p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-secondary" rows="4" placeholder="Votre réponse..." id="replyTextarea"></textarea>
+            <div class="flex justify-end gap-3">
+                <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition" id="cancelReply">Annuler</button>
+                <button class="px-4 py-2 bg-secondary text-white rounded-lg hover:bg-primary transition" id="submitReply">Envoyer</button>
+            </div>
+        </div>
+    </div>
+
+   
+</div>

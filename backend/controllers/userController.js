@@ -6,7 +6,7 @@ require('dotenv').config();
 
 // Créer un utilisateur (inscription)
 exports.createUser = async (req, res) => {
-  const { email, password, role } = req.body;
+  const { username, email, password, role } = req.body; // ← Ajout de `username`
 
   try {
     const existingUser = await User.findOne({ email });
@@ -17,11 +17,11 @@ exports.createUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new User({
+      username, // ← Ajout ici
       email,
       password: hashedPassword,
-      role: role || 'passager' // ou autre rôle par défaut
+      role: role || 'passager'
     });
-    
 
     await newUser.save();
 
@@ -30,6 +30,7 @@ exports.createUser = async (req, res) => {
     res.status(500).json({ message: 'Erreur serveur', error: error.message });
   }
 };
+
 
 // Connexion utilisateur
 exports.loginUser = async (req, res) => {
@@ -60,6 +61,7 @@ exports.loginUser = async (req, res) => {
       message: 'Connexion réussie',
       token,
       user: {
+        username: user.username, // ← Ajouté ici
         email: user.email,
         role: user.role
       }

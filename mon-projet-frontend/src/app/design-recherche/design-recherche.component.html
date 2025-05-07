@@ -1,0 +1,146 @@
+
+<div class="min-h-screen flex items-center justify-center bg-white">
+    <section class="w-full text-center my-8 bg-gradient-to-b from-blue-50 to-white py-12 px-4" style="margin-top: 20px">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">
+                Où voulez-vous aller ?
+            </h2>
+            
+            <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                Planifiez votre trajet en quelques clics parmi des milliers d'options disponibles
+            </p>
+            
+            <!-- Barre de recherche -->
+            <div class="max-w-5xl mx-auto mb-16">
+                <div class="search-bar flex flex-col md:flex-row items-center justify-between bg-white rounded-full shadow-xl px-6 py-3 gap-2 md:gap-4 w-full">
+                    <!-- Requête libre -->
+                    <div class="flex items-center gap-3 px-4 py-2 bg-gray-100 rounded-full w-full md:w-auto md:rounded-l-full">
+                        <i class="fas fa-search text-accent"></i>
+                        <input
+                            type="text"
+                            placeholder="Je cherche un trajet à ..."
+                            class="bg-transparent focus:outline-none text-primary w-full md:w-80 placeholder-gray-500"
+                            id="searchQuery"
+                        />
+                    </div>
+                    
+                    <!-- Passager -->
+                    <div class="relative border-l border-gray-300 px-4 py-2 cursor-pointer w-full md:w-auto" id="passengerDropdown">
+                        <div class="flex items-center gap-2 text-primary">
+                            <i class="fas fa-user"></i>
+                            <span id="passengerCount">1 passager</span>
+                            <i class="fas fa-chevron-down text-xs text-gray-500"></i>
+                        </div>
+                        <!-- Dropdown -->
+                        <div class="absolute z-10 bg-white shadow-lg rounded-xl p-4 top-12 right-0 w-48 hidden dropdown-enter" id="passengerDropdownContent">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-gray-600 font-medium">Passagers</span>
+                                <div class="flex items-center gap-3">
+                                    <button
+                                        class="bg-gray-200 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-300 transition"
+                                        id="decrementPassenger"
+                                    >
+                                        −
+                                    </button>
+                                    <span class="text-gray-800 w-6 text-center" id="passengerDisplay">1</span>
+                                    <button
+                                        class="bg-gray-200 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-300 transition"
+                                        id="incrementPassenger"
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="pt-2 border-t border-gray-100">
+                                <p class="text-xs text-gray-500">Enfants et animaux comptent comme passagers</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Rechercher -->
+                    <button
+                        class="bg-secondary text-black px-6 py-3 rounded-full font-medium hover:bg-[#0099dd] transition w-full md:w-auto md:rounded-r-full flex items-center justify-center gap-2"
+                        id="searchButton"
+                    >
+                        <i class="fas fa-search"></i>
+                        Rechercher
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Barre de tri -->
+            <div class="max-w-5xl mx-auto mb-8 hidden" id="sortBar">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between bg-white rounded-xl shadow-md px-6 py-4 gap-4">
+                    <div class="text-gray-700 font-medium">
+                        <span id="resultCount">0</span> résultats trouvés
+                    </div>
+                    
+                    <div class="flex items-center gap-3">
+                        <span class="text-gray-600">Trier par :</span>
+                        <div class="relative" id="sortDropdown">
+                            <button class="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition cursor-pointer" id="sortButton">
+                                <span id="currentSort">Pertinence</span>
+                                <i class="fas fa-chevron-down text-xs text-gray-500 sort-icon"></i>
+                            </button>
+                            <div class="absolute z-10 bg-white shadow-lg rounded-lg py-2 top-12 right-0 w-48 hidden dropdown-enter" id="sortDropdownContent">
+                                <div class="sort-option px-4 py-2 hover:bg-blue-50 cursor-pointer flex items-center justify-between" data-sort="relevance">
+                                    <span>Pertinence</span>
+                                    <i class="fas fa-check text-secondary hidden"></i>
+                                </div>
+                                <div class="sort-option px-4 py-2 hover:bg-blue-50 cursor-pointer flex items-center justify-between" data-sort="price">
+                                    <span>Prix croissant</span>
+                                    <i class="fas fa-check text-secondary hidden"></i>
+                                </div>
+                                <div class="sort-option px-4 py-2 hover:bg-blue-50 cursor-pointer flex items-center justify-between" data-sort="price-desc">
+                                    <span>Prix décroissant</span>
+                                    <i class="fas fa-check text-secondary hidden"></i>
+                                </div>
+                                <div class="sort-option px-4 py-2 hover:bg-blue-50 cursor-pointer flex items-center justify-between" data-sort="departure">
+                                    <span>Heure de départ</span>
+                                    <i class="fas fa-check text-secondary hidden"></i>
+                                </div>
+                                <div class="sort-option px-4 py-2 hover:bg-blue-50 cursor-pointer flex items-center justify-between" data-sort="duration">
+                                    <span>Durée du trajet</span>
+                                    <i class="fas fa-check text-secondary hidden"></i>
+                                </div>
+                                <div class="sort-option px-4 py-2 hover:bg-blue-50 cursor-pointer flex items-center justify-between" data-sort="rating">
+                                    <span>Note des conducteurs</span>
+                                    <i class="fas fa-check text-secondary hidden"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Résultats de recherche -->
+            <div class="max-w-5xl mx-auto hidden" id="searchResults">
+                <ul class="space-y-6" id="resultsList">
+                    <!-- Les résultats seront ajoutés dynamiquement ici -->
+                </ul>
+                
+                <div class="mt-8 flex justify-center">
+                    <button class="bg-white border border-secondary text-secondary px-6 py-3 rounded-full font-medium hover:bg-blue-50 transition flex items-center gap-2">
+                        Voir plus de résultats
+                        <i class="fas fa-arrow-down"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Aucun résultat -->
+            <div class="max-w-2xl mx-auto hidden py-12" id="noResults">
+                <div class="bg-blue-50 rounded-2xl p-8 text-center">
+                    <i class="fas fa-search text-4xl text-accent mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-primary mb-2">Aucun résultat trouvé</h3>
+                    <p class="text-gray-600 mb-6">Essayez d'élargir votre recherche ou de modifier vos critères</p>
+                    <button class="bg-secondary text-white px-6 py-3 rounded-full font-medium hover:bg-[#0099dd] transition">
+                        Réinitialiser la recherche
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+</div>
+

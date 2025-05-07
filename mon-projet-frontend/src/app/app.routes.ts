@@ -7,6 +7,9 @@ import { CarpoolingCalculatorComponent } from './carpooling-calculator/carpoolin
 import { FiltretrajetComponent } from './filtretrajet/filtretrajet.component';
 import { AdminComponent } from './admin/admin.component';
 import { ConducteurComponent } from './conducteur/conducteur.component';
+import { ProfileComponent } from './profile/profile.component';
+import { DesignRechercheComponent } from './design-recherche/design-recherche.component';
+import { AvisConducteurComponent } from './avis-conducteur/avis-conducteur.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
@@ -17,6 +20,7 @@ export const routes: Routes = [
     component: RegisterComponent,
     data: { isloginpage: true },
   },
+
   { path: 'recherche', component: RechercheTrajetComponent },
   { path: 'carpooling', component: CarpoolingCalculatorComponent },
   { path: 'filtre', component: FiltretrajetComponent },
@@ -26,4 +30,7 @@ export const routes: Routes = [
     component: ConducteurComponent,
     data: { isloginpage: true },
   },
+  { path: 'profilepassager', component: ProfileComponent },
+  { path: 'designrecherche', component: DesignRechercheComponent },
+  { path: 'avisconducteur', component: AvisConducteurComponent },
 ];
