@@ -1,133 +1,109 @@
-<!-- Header Section -->
-<header class="hero-gradient shadow-lg sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-16">
+<header class="hero-gradient shadow-lg">
+  <nav class="container mx-auto px-4 py-4">
+    <div class="flex justify-between items-center">
       <!-- Logo -->
-      <div class="flex-shrink-0 flex items-center">
-        <a href="#" class="flex items-center">
-          <i class="fas fa-car-side text-2xl mr-2"></i>
-          <span class="text-xl font-bold">TAKTAK</span>
+      <div class="flex items-center">
+        <a routerLink="/" class="flex items-center">
+          <i class="fas fa-car-side text-2xl mr-2 text-white"></i>
+          <span class="text-xl font-bold text-white">TAKTAK</span>
         </a>
       </div>
 
       <!-- Navigation Links -->
-      <nav class="hidden md:flex space-x-8">
-        <a
-          href="#"
-          class="text-white hover:text-blue-100 px-3 py-2 text-sm font-medium"
-          >Accueil</a
-        >
-        <a
-          href="#"
-          class="text-white hover:text-blue-100 px-3 py-2 text-sm font-medium"
-          >Trajets</a
-        >
-        <a
-          href="#"
-          class="text-white hover:text-blue-100 px-3 py-2 text-sm font-medium"
-          >Destinations</a
-        >
-        <a
-          href="#"
-          class="text-white hover:text-blue-100 px-3 py-2 text-sm font-medium"
-          >À propos</a
-        >
-      </nav>
+      <div class="hidden md:flex items-center space-x-4">
+        <!-- Common Links (always visible) -->
+        <div class="flex items-center space-x-4">
+          <a routerLink="/" class="text-white hover:text-gray-200">Accueil</a>
+          <a routerLink="/trajets" class="text-white hover:text-gray-200">Trajets</a>
+          <a routerLink="/destinations" class="text-white hover:text-gray-200">Destinations</a>
+          <a routerLink="/about" class="text-white hover:text-gray-200">À propos</a>
+        </div>
 
-      <!-- Right Side Buttons -->
-      <div class="flex items-center space-x-4">
-        <!-- Publish Trip Button -->
-        <button
-          class="btn-publish text-white font-medium px-4 py-2 rounded-lg flex items-center"
-          onclick="window.location.href='/recherche';"
-        >
-          <i class="fas fa-plus mr-2"></i> Recherche Trajet
-        </button>
+        <!-- Visitor Links -->
+        <div class="flex items-center space-x-4 ml-4" *ngIf="!isAuthenticated">
+          <a routerLink="/login" class="text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg">
+            Connexion
+          </a>
+          <a routerLink="/register" class="text-blue-600 bg-white hover:bg-gray-100 px-4 py-2 rounded-lg">
+            Inscription
+          </a>
+        </div>
 
-        <!-- User Profile Dropdown -->
-        <div class="relative dropdown">
-          <button class="flex items-center space-x-2 focus:outline-none">
-            <div
-              class="w-8 h-8 rounded-full bg-white flex items-center justify-center"
-            >
-              <i class="fas fa-user text-blue-500"></i>
+        <!-- Passager Links -->
+        <div class="flex items-center space-x-4 ml-4" *ngIf="isAuthenticated && userRole === 'passager'">
+          <a routerLink="/recherche" class="text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg">
+            Rechercher Trajet
+          </a>
+          <div class="relative inline-block text-left">
+            <div>
+              <button id="profile-button" type="button" (click)="toggleProfileMenu()" class="text-blue-600 bg-white hover:bg-gray-100 px-4 py-2 rounded-lg flex items-center">
+                <i class="fas fa-user mr-2"></i>
+                {{ userName || (userEmail ? userEmail.split('@')[0] : '') }}
+                <i class="fas fa-chevron-down ml-2"></i>
+              </button>
             </div>
-            <span class="text-white hidden md:inline">Mon compte</span>
-            <i class="fas fa-chevron-down text-xs"></i>
-          </button>
-
-          <!-- Dropdown Menu -->
-          <div
-            class="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden z-50"
-          >
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >
-              <i class="fas fa-user mr-2"></i> Profil
-            </a>
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >
-              <i class="fas fa-history mr-2"></i> Historique
-            </a>
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >
-              <i class="fas fa-cog mr-2"></i> Paramètres
-            </a>
-            <div class="border-t border-gray-200"></div>
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm text-red-500 hover:bg-gray-100"
-            >
-              <i class="fas fa-sign-out-alt mr-2"></i> Déconnexion
-            </a>
+            <!-- Menu déroulant -->
+            <div id="profile-menu" *ngIf="isProfileMenuOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+              <a routerLink="/profilepassager" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-user-circle mr-2"></i>Mon Profil
+              </a>
+              <button (click)="logout()" class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion
+              </button>
+            </div>
           </div>
         </div>
 
         <!-- Mobile menu button -->
         <button
-          class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-blue-700 focus:outline-none"
+          (click)="toggleMobileMenu()"
+          class="md:hidden text-white"
         >
-          <i class="fas fa-bars"></i>
+          <i class="fas fa-bars text-xl"></i>
         </button>
       </div>
     </div>
-  </div>
 
-  <!-- Mobile Menu -->
-  <div class="md:hidden hidden" id="mobile-menu">
-    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-blue-700">
-      <a
-        href="#"
-        class="text-white block px-3 py-2 rounded-md text-base font-medium"
-        >Accueil</a
-      >
-      <a
-        href="#"
-        class="text-white block px-3 py-2 rounded-md text-base font-medium"
-        >Trajets</a
-      >
-      <a
-        href="#"
-        class="text-white block px-3 py-2 rounded-md text-base font-medium"
-        >Destinations</a
-      >
-      <a
-        href="#"
-        class="text-white block px-3 py-2 rounded-md text-base font-medium"
-        >À propos</a
-      >
-      <div class="pt-4 border-t border-blue-800">
-        <button
-          class="w-full btn-publish text-white font-medium px-4 py-2 rounded-lg flex items-center justify-center"
-        >
-          <i class="fas fa-plus mr-2"></i> Publier un trajet
-        </button>
+    <!-- Mobile Menu -->
+    <div class="md:hidden" [class.hidden]="!isMobileMenuOpen">
+      <div class="flex flex-col space-y-2 mt-4 bg-blue-700 rounded-lg p-4">
+        <!-- Common Links -->
+        <a routerLink="/" class="text-white hover:bg-blue-600 px-3 py-2 rounded">
+          Accueil
+        </a>
+        <a routerLink="/trajets" class="text-white hover:bg-blue-600 px-3 py-2 rounded">
+          Trajets
+        </a>
+        <a routerLink="/destinations" class="text-white hover:bg-blue-600 px-3 py-2 rounded">
+          Destinations
+        </a>
+        <a routerLink="/about" class="text-white hover:bg-blue-600 px-3 py-2 rounded">
+          À propos
+        </a>
+
+        <!-- Visitor Links -->
+        <ng-container *ngIf="!isAuthenticated">
+          <a routerLink="/login" class="text-white hover:bg-blue-600 px-3 py-2 rounded">
+            Connexion
+          </a>
+          <a routerLink="/register" class="text-white hover:bg-blue-600 px-3 py-2 rounded">
+            Inscription
+          </a>
+        </ng-container>
+
+        <!-- Passager Links -->
+        <ng-container *ngIf="isAuthenticated && userRole === 'passager'">
+          <a routerLink="/recherche" class="text-white hover:bg-blue-600 px-3 py-2 rounded">
+            Rechercher Trajet
+          </a>
+          <a routerLink="/profilepassager" class="text-white hover:bg-blue-600 px-3 py-2 rounded flex items-center">
+            <i class="fas fa-user-circle mr-2"></i>Mon Profil
+          </a>
+          <a (click)="logout()" class="text-white hover:bg-blue-600 px-3 py-2 rounded flex items-center">
+            <i class="fas fa-sign-out-alt mr-2"></i>Déconnexion
+          </a>
+        </ng-container>
       </div>
     </div>
-  </div>
+  </nav>
 </header>

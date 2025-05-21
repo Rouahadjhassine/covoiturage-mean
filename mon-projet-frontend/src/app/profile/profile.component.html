@@ -1,343 +1,189 @@
-
-<div class="bg-gray-50 font-sans">
-    <div class="container mx-auto px-4 py-8 max-w-6xl">
-        <!-- Header avec animation -->
-        <header class="flex justify-between items-center mb-8 animate-fade-in">
-            <div>
-                <h1 class="text-3xl font-bold text-gray-800">Mon Profil</h1>
-                <p class="text-gray-500">Passager depuis <span id="member-since">juin 2022</span></p>
+<div class="min-h-screen bg-gray-100 py-8">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section du profil -->
+    <div class="bg-white shadow rounded-lg mb-6">
+      <div class="p-6">
+        <div class="flex flex-col md:flex-row md:items-center md:space-x-6">
+          <!-- Photo de profil -->
+          <div class="relative mb-4 md:mb-0">
+            <div class="w-32 h-32 rounded-full overflow-hidden bg-gray-200">
+              <img 
+                [src]="profileImage || 'assets/default-avatar.png'" 
+                alt="Photo de profil"
+                class="w-full h-full object-cover"
+              >
             </div>
-            <button id="settings-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-all flex items-center">
-                <i class="fas fa-cog mr-2"></i> Paramètres
+            <label class="absolute bottom-0 right-0 bg-blue-600 text-white p-2 rounded-full cursor-pointer hover:bg-blue-700">
+              <i class="fas fa-camera"></i>
+              <input 
+                type="file" 
+                class="hidden" 
+                accept="image/*"
+                (change)="onImageSelected($event)"
+              >
+            </label>
+          </div>
+
+          <!-- Informations du profil -->
+          <div class="flex-1">
+            <div class="flex justify-between items-start">
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900">{{ userProfile?.name || userEmail }}</h2>
+                <p class="text-gray-500">Passager</p>
+              </div>
+              <button 
+                (click)="isEditing = !isEditing"
+                class="text-blue-600 hover:text-blue-700"
+              >
+                <i class="fas" [class.fa-pen]="!isEditing" [class.fa-times]="isEditing"></i>
+                {{ isEditing ? 'Annuler' : 'Éditer le profil' }}
+              </button>
+            </div>
+
+            <!-- Formulaire d'édition -->
+            <div *ngIf="isEditing" class="mt-4">
+              <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700">Nom complet</label>
+                    <input 
+                      type="text" 
+                      formControlName="name"
+                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    >
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700">Téléphone</label>
+                    <input 
+                      type="tel" 
+                      formControlName="phone"
+                      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    >
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700">Bio</label>
+                  <textarea 
+                    formControlName="bio"
+                    rows="3"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="Parlez-nous un peu de vous..."
+                  ></textarea>
+                </div>
+                <div class="flex justify-end space-x-3">
+                  <button 
+                    type="submit"
+                    class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
+                  >
+                    Enregistrer les modifications
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Informations affichées -->
+            <div *ngIf="!isEditing && userProfile" class="mt-4 space-y-2">
+              <p *ngIf="userProfile.phone" class="flex items-center text-gray-600">
+                <i class="fas fa-phone mr-2 text-gray-400"></i>
+                {{ userProfile.phone }}
+              </p>
+              <p *ngIf="userProfile.bio" class="text-gray-600">
+                <i class="fas fa-info-circle mr-2 text-gray-400"></i>
+                {{ userProfile.bio }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section des trajets -->
+    <div class="bg-white shadow rounded-lg">
+      <div class="p-6">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Mes trajets réservés</h3>
+        
+        <!-- Onglets -->
+        <div class="border-b border-gray-200 mb-6">
+          <nav class="-mb-px flex space-x-8">
+            <button 
+              (click)="selectedTab = 'upcoming'" 
+              [class.border-blue-500]="selectedTab === 'upcoming'"
+              [class.text-blue-600]="selectedTab === 'upcoming'"
+              class="pb-4 px-1 border-b-2 font-medium text-sm transition-colors"
+              [class.border-transparent]="selectedTab !== 'upcoming'"
+              [class.text-gray-500]="selectedTab !== 'upcoming'"
+            >
+              Trajets à venir
             </button>
-        </header>
-        
-        <!-- Section principale avec animation retardée -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-            <!-- Carte de profil -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden animate-fade-in delay-1 stats-card">
-                <div class="p-6">
-                    <div class="flex flex-col items-center mb-6">
-                        <div class="relative mb-4">
-                            <img id="profile-image" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profil" class="w-24 h-24 rounded-full profile-pic object-cover">
-                            <div class="absolute bottom-0 right-0 bg-green-500 rounded-full w-6 h-6 border-2 border-white"></div>
-                            <button id="edit-image-btn" class="absolute top-0 right-0 bg-indigo-600 text-white rounded-full w-8 h-8 flex items-center justify-center">
-                                <i class="fas fa-pencil-alt text-xs"></i>
-                            </button>
-                        </div>
-                        <h2 id="profile-name" class="text-xl font-bold text-gray-800">Sophie Martin</h2>
-                        <p id="profile-location" class="text-gray-500">Paris, France</p>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="text-sm font-medium text-gray-700">Profil complété</span>
-                                <span id="profile-completion" class="text-sm font-medium text-indigo-600">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div id="completion-bar" class="progress-bar h-2.5 rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center">
-                            <div class="mr-4 text-center">
-                                <p id="average-rating" class="text-2xl font-bold text-indigo-600">4.9</p>
-                                <div id="rating-stars" class="flex justify-center">
-                                    <i class="fas fa-star rating-star"></i>
-                                    <i class="fas fa-star rating-star"></i>
-                                    <i class="fas fa-star rating-star"></i>
-                                    <i class="fas fa-star rating-star"></i>
-                                    <i class="fas fa-star-half-alt rating-star"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <p id="rating-count" class="text-sm text-gray-600">Note moyenne basée sur 24 trajets</p>
-                                <p class="text-sm text-green-500">+5% par rapport à la moyenne</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Statistiques -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden animate-fade-in delay-2 stats-card">
-                <div class="p-6">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-6">Mes Statistiques</h3>
-                    
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-indigo-50 p-4 rounded-lg text-center">
-                            <div class="text-indigo-600 mb-2">
-                                <i class="fas fa-road text-2xl"></i>
-                            </div>
-                            <p class="text-gray-600 text-sm">Distance totale</p>
-                            <p id="total-distance" class="text-xl font-bold text-gray-800">1,247 km</p>
-                        </div>
-                        
-                        <div class="bg-purple-50 p-4 rounded-lg text-center">
-                            <div class="text-purple-600 mb-2">
-                                <i class="fas fa-coins text-2xl"></i>
-                            </div>
-                            <p class="text-gray-600 text-sm">Dépenses totales</p>
-                            <p id="total-spent" class="text-xl font-bold text-gray-800">€423</p>
-                        </div>
-                        
-                        <div class="bg-blue-50 p-4 rounded-lg text-center">
-                            <div class="text-blue-600 mb-2">
-                                <i class="fas fa-calendar-alt text-2xl"></i>
-                            </div>
-                            <p class="text-gray-600 text-sm">Trajets ce mois</p>
-                            <p id="monthly-trips" class="text-xl font-bold text-gray-800">6</p>
-                        </div>
-                        
-                        <div class="bg-green-50 p-4 rounded-lg text-center">
-                            <div class="text-green-600 mb-2">
-                                <i class="fas fa-leaf text-2xl"></i>
-                            </div>
-                            <p class="text-gray-600 text-sm">CO₂ économisé</p>
-                            <p id="co2-saved" class="text-xl font-bold text-gray-800">24 kg</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Préférences -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden animate-fade-in delay-3 stats-card">
-                <div class="p-6">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-6">Mes Préférences</h3>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <p class="text-sm font-medium text-gray-700 mb-1">Type de trajet préféré</p>
-                            <div id="preferred-rides" class="flex flex-wrap gap-2">
-                                <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">Covoiturage</span>
-                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Conductrices</span>
-                            </div>
-                            <button id="edit-preferences-btn" class="mt-2 text-indigo-600 hover:text-indigo-800 text-sm flex items-center">
-                                <i class="fas fa-pencil-alt mr-1"></i> Modifier
-                            </button>
-                        </div>
-                        
-                        <div>
-                            <p class="text-sm font-medium text-gray-700 mb-1">Conversation</p>
-                            <div class="flex items-center">
-                                <div class="mr-2">
-                                    <i class="fas fa-comment text-indigo-500"></i>
-                                </div>
-                                <span id="conversation-pref" class="text-gray-700">J'aime discuter pendant le trajet</span>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <p class="text-sm font-medium text-gray-700 mb-1">Animaux</p>
-                            <div class="flex items-center">
-                                <div class="mr-2">
-                                    <i class="fas fa-paw text-indigo-500"></i>
-                                </div>
-                                <span id="pets-pref" class="text-gray-700">Accepte les animaux</span>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <p class="text-sm font-medium text-gray-700 mb-1">Musique</p>
-                            <div class="flex items-center">
-                                <div class="mr-2">
-                                    <i class="fas fa-music text-indigo-500"></i>
-                                </div>
-                                <span id="music-pref" class="text-gray-700">Musique douce</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <button 
+              (click)="selectedTab = 'past'" 
+              [class.border-blue-500]="selectedTab === 'past'"
+              [class.text-blue-600]="selectedTab === 'past'"
+              class="pb-4 px-1 border-b-2 font-medium text-sm transition-colors"
+              [class.border-transparent]="selectedTab !== 'past'"
+              [class.text-gray-500]="selectedTab !== 'past'"
+            >
+              Historique des trajets
+            </button>
+          </nav>
         </div>
-        
-        <!-- Historique des trajets -->
-        <div class="bg-white rounded-xl shadow-md overflow-hidden animate-fade-in delay-4">
-            <div class="p-6">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-xl font-bold text-gray-800">Historique des Trajets</h3>
-                    <div class="relative">
-                        <select id="trip-filter" class="appearance-none bg-gray-100 border-0 text-gray-700 py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                            <option value="all">Tous les trajets</option>
-                            <option value="month">Ce mois-ci</option>
-                            <option value="3months">Les 3 derniers mois</option>
-                            <option value="year">2023</option>
-                        </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Liste des trajets -->
-                <div class="space-y-4" id="trips-list">
-                    <!-- Les trajets seront générés dynamiquement ici -->
-                </div>
-                
-                <!-- Pagination -->
-                <div class="mt-6 flex justify-center">
-                    <nav class="flex items-center space-x-2">
-                        <button id="prev-page" class="px-3 py-1 rounded-md bg-gray-100 text-gray-600 hover:bg-indigo-100 hover:text-indigo-600">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="px-3 py-1 rounded-md bg-indigo-600 text-white">1</button>
-                        <button class="px-3 py-1 rounded-md bg-gray-100 text-gray-600 hover:bg-indigo-100 hover:text-indigo-600">2</button>
-                        <button class="px-3 py-1 rounded-md bg-gray-100 text-gray-600 hover:bg-indigo-100 hover:text-indigo-600">3</button>
-                        <span class="px-2 text-gray-500">...</span>
-                        <button class="px-3 py-1 rounded-md bg-gray-100 text-gray-600 hover:bg-indigo-100 hover:text-indigo-600">8</button>
-                        <button id="next-page" class="px-3 py-1 rounded-md bg-gray-100 text-gray-600 hover:bg-indigo-100 hover:text-indigo-600">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Modals -->
-    <!-- Modal Paramètres -->
-    <div id="settings-modal" class="modal">
-        <div class="modal-content">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold">Paramètres du profil</h3>
-                <button id="close-settings" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times"></i>
-                </button>
+        <!-- Liste des trajets -->
+        <div class="space-y-4">
+          <ng-container *ngIf="selectedTab === 'upcoming'">
+            <div *ngFor="let trip of upcomingTrips" class="border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+              <div class="flex justify-between items-start">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <i class="fas fa-map-marker-alt text-red-500"></i>
+                    <span class="font-medium">{{ trip.departure }} → {{ trip.destination }}</span>
+                  </div>
+                  <p class="text-sm text-gray-500 mt-1">
+                    <i class="far fa-calendar mr-2"></i>{{ trip.date | date:'dd/MM/yyyy' }}
+                    <i class="far fa-clock mx-2"></i>{{ trip.time }}
+                  </p>
+                </div>
+                <div class="text-right">
+                  <span class="text-lg font-semibold text-blue-600">{{ trip.price | currency:'EUR' }}</span>
+                  <p class="text-sm text-gray-500">{{ trip.seats }} place(s)</p>
+                </div>
+              </div>
             </div>
-            
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Nom complet</label>
-                    <input id="edit-name" type="text" class="edit-input" value="Sophie Martin">
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Localisation</label>
-                    <input id="edit-location" type="text" class="edit-input" value="Paris, France">
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Membre depuis</label>
-                    <input id="edit-member-since" type="text" class="edit-input" value="juin 2022">
-                </div>
-                
-                <div class="pt-4 border-t">
-                    <button id="save-settings" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg w-full">
-                        Enregistrer les modifications
-                    </button>
-                </div>
+            <div *ngIf="upcomingTrips.length === 0" class="text-center py-8 text-gray-500">
+              <i class="fas fa-calendar-times text-4xl mb-2"></i>
+              <p>Vous n'avez aucun trajet à venir</p>
+              <a routerLink="/recherche" class="text-blue-600 hover:text-blue-700 mt-2 inline-block">
+                Rechercher un trajet
+              </a>
             </div>
-        </div>
-    </div>
-    
-    <!-- Modal Image -->
-    <div id="image-modal" class="modal">
-        <div class="modal-content">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold">Changer la photo de profil</h3>
-                <button id="close-image" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <div class="space-y-4">
-                <div class="flex justify-center">
-                    <img id="image-preview" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Preview" class="w-32 h-32 rounded-full object-cover">
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">URL de l'image</label>
-                    <input id="image-url" type="text" class="edit-input" placeholder="https://example.com/image.jpg">
-                </div>
-                
-                <div class="grid grid-cols-2 gap-4">
-                    <button id="random-image" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg">
-                        <i class="fas fa-random mr-2"></i> Aléatoire
-                    </button>
-                    <button id="upload-image" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg">
-                        <i class="fas fa-upload mr-2"></i> Téléverser
-                    </button>
-                </div>
-                
-                <div class="pt-4 border-t">
-                    <button id="save-image" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg w-full">
-                        Enregistrer la photo
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Modal Préférences -->
-    <div id="preferences-modal" class="modal">
-        <div class="modal-content">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold">Modifier les préférences</h3>
-                <button id="close-preferences" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Type de trajet préféré</label>
-                    <div class="flex flex-wrap gap-2 mb-2">
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" class="form-checkbox text-indigo-600" checked>
-                            <span class="ml-2">Covoiturage</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" class="form-checkbox text-purple-600" checked>
-                            <span class="ml-2">Conductrices</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" class="form-checkbox text-blue-600">
-                            <span class="ml-2">Voiture électrique</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" class="form-checkbox text-green-600">
-                            <span class="ml-2">Grand véhicule</span>
-                        </label>
-                    </div>
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Conversation</label>
-                    <select id="conversation-select" class="edit-input">
-                        <option value="J'aime discuter pendant le trajet">J'aime discuter pendant le trajet</option>
-                        <option value="Je préfère le silence">Je préfère le silence</option>
-                        <option value="Au choix du conducteur">Au choix du conducteur</option>
-                    </select>
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Animaux</label>
-                    <select id="pets-select" class="edit-input">
-                        <option value="Accepte les animaux">Accepte les animaux</option>
-                        <option value="Pas d'animaux">Pas d'animaux</option>
-                        <option value="Chiens uniquement">Chiens uniquement</option>
-                    </select>
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Musique</label>
-                    <select id="music-select" class="edit-input">
-                        <option value="Musique douce">Musique douce</option>
-                        <option value="Pas de musique">Pas de musique</option>
-                        <option value="Tous genres">Tous genres</option>
-                        <option value="Radio">Radio</option>
-                    </select>
-                </div>
-                
-                <div class="pt-4 border-t">
-                    <button id="save-preferences" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg w-full">
-                        Enregistrer les préférences
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+          </ng-container>
 
-  
+          <ng-container *ngIf="selectedTab === 'past'">
+            <div *ngFor="let trip of pastTrips" class="border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+              <div class="flex justify-between items-start">
+                <div>
+                  <div class="flex items-center space-x-2">
+                    <i class="fas fa-map-marker-alt text-gray-400"></i>
+                    <span class="font-medium">{{ trip.departure }} → {{ trip.destination }}</span>
+                  </div>
+                  <p class="text-sm text-gray-500 mt-1">
+                    <i class="far fa-calendar mr-2"></i>{{ trip.date | date:'dd/MM/yyyy' }}
+                    <i class="far fa-clock mx-2"></i>{{ trip.time }}
+                  </p>
+                </div>
+                <div class="text-right">
+                  <span class="text-lg font-semibold text-gray-600">{{ trip.price | currency:'EUR' }}</span>
+                  <p class="text-sm text-gray-500">{{ trip.seats }} place(s)</p>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="pastTrips.length === 0" class="text-center py-8 text-gray-500">
+              <i class="fas fa-history text-4xl mb-2"></i>
+              <p>Aucun trajet dans l'historique</p>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
